@@ -36,7 +36,7 @@ function OneBike() {
   this.seatwidth = 20;
   this.strokeweight = 8;
   this.wheel1start = 0; //center of back wheel
-  this.wheeldist = 200;
+  this.wheeldist = 140;
   this.wheelsize = 60;
  
 
@@ -57,7 +57,7 @@ function OneBike() {
  
     
     var topbar = this.wheel1start-this.wheelsize;
-    var barlength = this.wheeldist/4;
+    var barlength = this.wheeldist/2;
     var hueChange1 = int(random(0, 360));
     var hueChange2 = int(random(0, 360));
     var hueChange3 = int(random(0, 360));
