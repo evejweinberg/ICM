@@ -1,13 +1,9 @@
-function setup() {
-  createCanvas(displayWidth,displayHeight);
-  // background(255, 128, 163);//pink
-  background(0);//pink
-  noLoop();
+function setup(){
+
+
 }
 
-function draw() {
-  
- 
+function draw(){
   
   var sat = 200;
   var bri = 255;
@@ -38,8 +34,8 @@ function draw() {
   var seatwidth = 10;
   
   //bike 1
-  push();
-  translate(100,100);
+  // push();
+  // translate(100,100);
   stroke(d);
   fill(c);
   ellipse(wheel1start,wheel1start,wheelsize,wheelsize);
@@ -54,6 +50,6 @@ function draw() {
   line(wheel1start+wheeldist/3-5, top-12, wheel1start+wheeldist/3-5+seatwidth, top-12);//seat
   line(barlength+wheel1start+wheeldist/3, top-12, barlength+wheel1start+wheeldist/3+seatwidth, top-12);//handles
   
-  pop();
+  // pop();
   
 }
