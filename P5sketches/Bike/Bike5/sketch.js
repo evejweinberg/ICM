@@ -1,6 +1,7 @@
 var bike;  // Declare object
 var dsplyWidth = 900;
 var dsplyHeight = 400;
+
 function setup() {
   createCanvas(dsplyWidth, dsplyHeight);
   // Create object
@@ -11,8 +12,8 @@ function setup() {
 }
 
 function draw() {
-  var sat = 100;
-  var bri = 60;
+    var sat = 100;
+    var bri = 60;
     
     var hueChange1 = int(random(0, 360));
     var hueChange2 = int(random(0, 360));
@@ -24,26 +25,30 @@ function draw() {
     var color3 = color(hueChange3, sat, bri);
     var color4 = color(hueChange4, sat, bri);
     var color5 = color(hueChange5, sat, bri);
-background(hueChange5, sat-50, bri);
-fill(color5);
-noStroke();
-rect(0, 0, dsplyWidth, dsplyHeight/3.5);
-rect(0, dsplyHeight-dsplyHeight/3.5, dsplyWidth, dsplyHeight/3.5);
+    background(hueChange5, sat-50, bri);
+    
 
-  fill(color3);
-  arc(50, 50, 80, 80, 0, PI+QUARTER_PI, PIE);
-  push();
-  translate(100,230);
-  bike.display();
-  pop();
-  push();
-  translate(400,230);
-  bike.display();
-  pop();
+
+for (var i = d; i<= width; i += d) {
+   fill(color5);
+   line(0,10+i,displayWidth, displayHeight);
+  }
+
+
+
+  for (var j = 0; j <= 12; j++) {
+      fill(color3);
+      bike.display(200,200);
+  
+      }
+ 
 }
 
+
+
+
 // OneBike class
-function OneBike() {
+function OneBike(xloc,yloc) {
   this.seatwidth = 20;
   this.strokeweight = 8;
   this.wheel1start = 0; //center of back wheel
@@ -51,13 +56,6 @@ function OneBike() {
   this.wheelsize = 60;
  
 
-
-  this.move = function() {
-    this.x += 20;
-    this.y += 20;
-      this.x += 10;
-    this.y += 10;
-  };
 
   this.display = function() {
     // ellipse(this.x, this.y, this.diameter, this.diameter);
