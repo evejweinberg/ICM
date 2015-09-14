@@ -6,6 +6,7 @@ var letterrounding;
 var letterstroke;
 var lettercount;
 var typecolor;
+var letterstrokeB;
 //BGdots
 var unit = 100;
 var Fullcount;
@@ -31,6 +32,14 @@ var blipline = [];
 
 
 
+// function Triangle(){
+//   noFill();
+//   stroke(251, 151, 162);
+//   triangle(30, 75, 58, 20, 86, 75);
+//   if (frameCount%20 == 0){
+//   }
+// }
+
 function Blips() {
   this.blipwidth = 5;
   this.blipheight = [];
@@ -47,10 +56,13 @@ function Blips() {
     // fill(255);
     // noStroke();
     stroke(255);
-    strokeWeight(letterstroke-2);
+    strokeWeight(letterstrokeB);
     for (var j = 0; j < 16; j++) {
       // rect(j * 10, 10, this.blipwidth, this.blipheight[j]); //x,y,w,h
       line(j * 10,10,j * 10,10+this.blipheight[j]);
+      if(letterstrokeB < 0){
+        letterstrokeB ===0;
+      }
     }
     pop();
     
@@ -88,8 +100,8 @@ function OneBouquet() {
   this.rotation = random(0, 2 * PI); //360 degrees rotation, random
   total = 4;
   for (var i = 0; i < total; i++) {
-    xends.push(this.xstart + random(35, 200)); //create the actual list and store it
-    yends.push(this.ystart + random(30, 150));
+    xends.push(this.xstart + random(-75, 100)); //create the actual list and store it
+    yends.push(this.ystart + random(-70, 100));
   }
 
 
@@ -99,19 +111,29 @@ function OneBouquet() {
     push();
     translate(this.xstart, this.ystart);
     rotate(this.rotation + frameCount / 900); //have each one rotate slowly, but why does it seem like they have one common rotational pivot point?
+     this.mapDist = 100;
+    this.offsetX = map(mouseX, 0, displayWidth, -1*this.mapDist, this.mapDist);
+    this.offsetY = map(mouseY, 0, displayHeight, -1*this.mapDist, this.mapDist);
+    this.FinalptX = this.xstart + this.offsetX;
+    this.FinalptY = this.ystart + this.offsetY;
+    this.d = int(dist(mouseX, mouseY, this.FinalptX, this.FinalptY));
+  
+    
+    
+    
 
     noFill();
     stroke(150,80);
     strokeWeight(1);
+  
     for (var k = 0; k < total; k++) {
-      line(this.xstart + map(mouseX, 0, displayWidth, -60, 60), this.ystart + map(mouseY, 0, displayWidth, -60, 60), xends[k] + map(mouseX, 0, displayWidth, 0, 0), yends[k] + map(mouseY, 0, displayWidth, 0, 0));
-      // fill(150);
+      line(this.FinalptX , this.FinalptY, xends[k], yends[k]);
       noFill();
-      ellipse(xends[k] + map(mouseX, 0, displayWidth, 0, 0), yends[k] + map(mouseY, 0, displayWidth, 0, 0), 20, 20);
+      ellipse(xends[k], yends[k], 20, 20);
     }
-    // fill(150);
+    
     noFill();
-    ellipse(this.xstart + map(mouseX, 0, displayWidth, -60, 60), this.ystart + map(mouseY, 0, displayWidth, -60, 60), 30, 30);
+    ellipse(this.FinalptX, this.FinalptY, 30, 30);
     noFill();
     pop();
 
@@ -141,7 +163,7 @@ function setup() {
   for (var m = 0; m < 50; m++) {
     singlestar.push(new Stars());
   }
-  for (var n = 0; n < 50; n++) {
+  for (var n = 0; n < 70; n++) { //how many bouquet do you want to instantiate?
     bouquet.push(new OneBouquet());
   }
   
@@ -149,11 +171,11 @@ function setup() {
     blipline.push(new Blips());
   }
 
-  letterwidth = 80;
-  letterheight = 120;
-  letterxheight = 65;
-  lettergap = 20;
-  letterrounding = 40;
+  letterwidth = 160;
+  letterheight = 240;
+  letterxheight = 130;
+  lettergap = 40;
+  letterrounding = 80;
   letterstroke = 4;
   lettercount = 30;
   typecolor = color(255, 255, 255);
@@ -180,25 +202,28 @@ function draw() {
   // background(0, 0, 50);
   setGradient(0, 0, width/2, height, b2, b1, X_AXIS);
   setGradient(width/2, 0, width/2, height, b1, b2, X_AXIS);
-
+ letterstrokeB = letterstroke-2;
+ 
   for (var i = 0; i < Fullcount; i++) {
     dots[i].draw();
   }
   
+ if(mouseX>100 && mouseX<300 && mouseY>100 && mouseY<300){
+   var grow = 10;
+   noFill();
+  stroke(251, 151, 162); //will this fade it out?
+  push();
+  triangle(100,100,300,100,200,300);
+ pop();
+ print(grow);
+ }
  
-  for (var o = 0; o < 6; o++) {
-    blipline[o].display(260+o*200,630);
-    push();
-    blipline[o].display(260+o*200,300);
-    pop();
 
-  }
-  // blipline1.display(200,100);
-  // blipline2.display(400,400);
-  
+
+ 
   
   //------------LINES!!!!!-------------------------
-  linespeed = linespeed+15;
+  linespeed = linespeed+25;
   var LineTopLeft = linespeed-200;
   var LineTopMiddle = linespeed;
   stroke(color(248, 73, 41));
@@ -207,17 +232,15 @@ function draw() {
   if (LineTopLeft>height+200){
     linespeed=0;
   }
-  stroke(color(69, 97, 220));
+  // stroke(color(69, 97, 220)); //blue
+  // strokeWeight(5);
+  // line(700+LineTopMiddle,700+-1*LineTopMiddle,700-linespeed,700-linespeed*-1);
+
+  stroke(color(251, 248, 234)); //offwhite 2nd
   strokeWeight(5);
-  line(700+LineTopMiddle,700+-1*LineTopMiddle,700-linespeed,700-linespeed*-1);
-  // if (LineTopLeft>height){
-  //   linespeed=0;
-  // }
-  stroke(color(251, 248, 234));
-  strokeWeight(5);
-  line(width-100-linespeed,width-100-linespeed,width-linespeed,width-linespeed);
+  line(width-100-(linespeed),width-100-(linespeed),width-linespeed,width-linespeed);
   
-  stroke(color(251, 248, 234));
+  stroke(color(251, 248, 234));//offwhite
   strokeWeight(5);
   line(600-linespeed,600-linespeed,900-linespeed,900-linespeed);
   
@@ -226,6 +249,14 @@ function draw() {
   stroke(color(59, 50, 89));
   line(LineTopLeft,LineTopLeft,100+linespeed,100+linespeed);
   pop();
+  
+  stroke(color(69, 97, 220)); //blue
+  strokeWeight(5);
+  line(1200+linespeed,1200-linespeed,1500+linespeed,900-linespeed);
+  
+  stroke(color(251, 151, 162)); //pink?
+  strokeWeight(5);
+  line(100+linespeed*1.3,1400-linespeed*1.3,500+linespeed,1000-linespeed);
 
 
   
@@ -258,12 +289,18 @@ function draw() {
   arc(circCenter, circCenter, circDiam, circDiam, 320, 360);
   pop();
 
+ //----------WORD-------------
+  push();
   stroke(typecolor);
   noFill();
   strokeWeight(letterstroke);
-  push();
-  translate(260, 360);
-  scale(2, 2);
+  translate(width/2-(letterpos3+lettergap+letterwidth),height/2-(letterheight/2)+map(mouseY,0,height,-40,40));
+  // scale(2, 2);
+     if (letterstrokeB <0){
+       letterstrokeB = 0;
+     }
+  
+  
 
   //---------D--------
   rect(0, 0, letterwidth, letterheight, 0, letterrounding, letterrounding, 0);
@@ -292,7 +329,7 @@ function draw() {
   line(letterpos6 + letterwidth, 0, letterpos6 + letterwidth, letterheight);
   
   //------------SECONDARY LETTER MARKS!!!!!!!------------
-  strokeWeight(letterstroke-2);
+  strokeWeight(letterstrokeB);
   stroke(240,90);
   line(letterpos6+letterwidth/5, 0+letterheight/3, letterpos6+letterwidth/5, letterheight); //N
   line(letterpos2+letterwidth/5, letterheight/8, letterpos2+letterwidth/5, letterxheight*.9); //R
@@ -300,17 +337,20 @@ function draw() {
    angleMode(DEGREES);
    arc(letterpos5 + letterwidth / 2, letterheight/3, letterwidth/1.7, letterwidth/1.7, 180, 360); //O
      arc(letterpos4 + letterwidth / 2, letterheight/3, letterwidth/1.7, letterwidth/1.7, 180, 360); //G
+     
   
+     
+       for (var o = 0; o < 6; o++) {
+    blipline[o].display(0+o*200,-50);
+    push();
+    blipline[o].display(0+o*200,letterheight+50);
+    pop();
 
+  }
 pop();
 
 
 
-
-  // for (var m = 0; m < singlestar.length; m++) {
-
-  //   singlestar[m].display();
-  // }
   angleMode(RADIANS);
   for (var n = 0; n < bouquet.length; n++) {
     bouquet[n].display(n*10,n*10);
@@ -347,10 +387,14 @@ Module.prototype.draw = function() {
 
 
 function mouseMoved() {
+if (mouseX<width/2){
+  letterstroke = map(mouseX, 0, width/2, 1, 8);
 
-  letterstroke = map(mouseX, 0, width, 1, 6);
-  lettergap = map(mouseY, 0, width, 20, 100); //why does this not work?
-  // letterwidth = map(mouseX, 0, width, 20, 70);
+} else {
+  letterstroke = map(mouseX, width/2, width, 8, 1);
+}
+  lettergap = map(mouseX, 0, width, -40, 40); //why does this not work?
+  
 
 }
 
