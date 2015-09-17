@@ -34,7 +34,7 @@ function circle() {
   this.randomOffsetY2 = random(-10, 10);
   this.randomOffsetX2 = random(30, 90);
   this.randomOffsetY3 = random(70, 120);
-  strokeWeight(7);
+  
   this.opacity = 70;
   this.diameter = random(1, width / 15); //random width from 1 to width/15
 
@@ -48,20 +48,18 @@ function circle() {
     noFill();
     stroke(255); //want this to be a random color from my array
     var col_rad = 3;
-    if (mouseX < this.position.x + this.diameter * col_rad && mouseX > this.position.x - this.diameter * col_rad && mouseY < this.position.y + this.diameter * col_rad && mouseY > this.position.y - this.diameter * col_rad) {
-      fill(this.col);
-      strokeWeight(2);
-      this.opacity = 10;
-
-    }
+      if (mouseX < this.position.x + this.diameter * col_rad && mouseX > this.position.x - this.diameter * col_rad && mouseY < this.position.y + this.diameter * col_rad && mouseY > this.position.y - this.diameter * col_rad) {
+        this.opacity = 10;
+        noStroke();
+        fill(this.col);
+        // strokeWeight(2);
+       
+        }
 
     this.angle = atan2(mouseY - this.position.y, mouseX - this.position.x);
     push();
-    scale();
-    // rotate(this.angle);
-    // stroke(0);
-    triangle(this.position.x, this.position.y, this.position.x + this.randomOffsetX1, this.position.y + this.andomOffsetY2, this.position.x + this.randomOffsetX2, this.position.y + this.randomOffsetY3);
-
+    triangle(this.position.x, this.position.y, this.position.x + this.randomOffsetX1, this.position.y + this.randomOffsetY2, this.position.x + this.randomOffsetX2, this.position.y + this.randomOffsetY3);
+strokeWeight(7);
     noFill();
     // arc(this.position.x, this.position.y, this.diameter,this.diameter, this.angle - PI/5, this.angle + PI/5)
     // strokeWeight(1);
