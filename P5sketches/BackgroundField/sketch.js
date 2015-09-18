@@ -4,88 +4,101 @@
 // var colorD = color(251, 151, 162);//tan?
 // var colorE = color(251, 248, 234);//lightB
 // var colorF = color(240, 206, 181); //light
-var circles = []; // array of Jitter objects
-var backc = 255;
-var frontc = 0;
+var triangles = []; // allocate space for this array
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
 
-  for (var i = 0; i < 200; i++) {
-    circles.push(new circle()); //instantiate the circles
+  for (var i = 0; i < 500; i++) {
+    triangles.push(new TriangleBackground()); //instantiate the triangles
+    //if a triangles center is within 20px do not draw it
+    // var desiredseparation = 25.0;
+    // var steer = createVector(0, 0);
+    // var count = 0;
+    // // For every triangle in the system, check if it's too close
+    // for (var j = 0; j < triangles.length; j++) {
+    //   var d = p5.Vector.dist(this.Centerposition, triangles[j].position);
+    //   // If the distance is greater than 0 and less than an arbitrary amount (0 when you are yourself)
+    //   if (d > desiredseparation) {
+    //     // Calculate vector pointing away from neighbor
+    //     var diff = p5.Vector.sub(this.Centerposition, boids[i].position);
+    //     diff.normalize();
+    //     diff.div(d); // Weight by distance
+    //     steer.add(diff);
+    //     count++; // Keep track of how many
+    //   }
+    }
+
   }
 
-}
+
+  function draw() {
+    background(0);
+    for (var i = 0; i < triangles.length; i++) { //call all of the circles to draw, 
+
+      triangles[i].display(); //no arguments for display, all determined inside the function
+    }
 
 
-function draw() {
-  background(0);
-  for (var i = 0; i < circles.length; i++) { //call all of the circles to draw, 
-
-    circles[i].display(); //no arguments for display, all determined inside the function
   }
 
+  function TriangleBackground() {
+    // this.randomOffsetX1 = random(80, 100);
+    // this.randomOffsetY2 = random(-10, 10);
+    // this.randomOffsetX2 = random(30, 90);
+    // this.randomOffsetY3 = random(70, 120);
+    this.Centerposition = createVector(random(0, width), random(0, width)); //the centerpoint can be anywhere
+    this.opacity = 90;
+    this.col = color(random(5, 50), random(5, 60), random(150, 255), this.opacity); //70% opacity, mostly blue
 
-}
+    this.display = function() {
+      stroke(100); //want this to be a random color from my array
+      var mouseradius = 100;
+      strokeWeight(2);
+      this.opacity = 70;
+      fill(this.col);
 
-function circle() {
-  this.randomOffsetX1 = random(80, 100);
-  this.randomOffsetY2 = random(-10, 10);
-  this.randomOffsetX2 = random(30, 90);
-  this.randomOffsetY3 = random(70, 120);
-  
-  this.opacity = 70;
-  this.diameter = random(1, width / 15); //random width from 1 to width/15
-
-  this.position = createVector(random(0, width), random(0, width))
-    //create a new vector number of x components, number of y, number of z
-
-  this.angle = 0;
-  this.col = color(random(0, 255), random(0, 255), random(0, 255), this.opacity); //70% opacity
-
-  this.display = function() {
-    noFill();
-    stroke(255); //want this to be a random color from my array
-    var col_rad = 3;
-      if (mouseX < this.position.x + this.diameter * col_rad && mouseX > this.position.x - this.diameter * col_rad && mouseY < this.position.y + this.diameter * col_rad && mouseY > this.position.y - this.diameter * col_rad) {
+      //------------if mouse is near the cneter of the triangle, dim it down----------------
+      if (mouseX > this.Centerposition.x + (-1 * mouseradius) && mouseX < this.Centerposition.x + (mouseradius) && mouseY > this.Centerposition.y + (-1 * mouseradius) && mouseY < this.Centerposition.y + (mouseradius)) {
         this.opacity = 10;
-        noStroke();
-        fill(this.col);
-        // strokeWeight(2);
-       
-        }
-
-    this.angle = atan2(mouseY - this.position.y, mouseX - this.position.x);
-    push();
-    triangle(this.position.x, this.position.y, this.position.x + this.randomOffsetX1, this.position.y + this.randomOffsetY2, this.position.x + this.randomOffsetX2, this.position.y + this.randomOffsetY3);
-strokeWeight(7);
-    noFill();
-    // arc(this.position.x, this.position.y, this.diameter,this.diameter, this.angle - PI/5, this.angle + PI/5)
-    // strokeWeight(1);
-    pop();
+        fill(240, this.opacity);
+        strokeWeight(1);
+        stroke(160, this.opacity * 5);
+        //and rotate the triangle towards the mouse using atan
+      }
 
 
-  };
 
-}
+      push();
+      var triWidth = 6;
+      // rotate somehow ----- this.angle = atan2(mouseY - this.position.y, mouseX - this.position.x);
+      triangle(this.Centerposition.x, this.Centerposition.y - 30, this.Centerposition.x + triWidth, this.Centerposition.y + triWidth, this.Centerposition.x - triWidth, this.Centerposition.y + triWidth);
+      noFill();
+      pop();
 
-// function mousePressed(){
 
-//   for (var i=0; i<200; i++) {
-//     circles.pop();
-//     // circles.push(new circle());
-//   }
-//   for (var i=0; i<200; i++) {
-//     // circles.pop();
-//     circles.push(new circle());
-//   }
-//   if(frontc == 0){
-//     frontc = 255;
-//     backc = 0;
-//   }else{
-//     frontc = 0;
-//     backc = 255;
-//   }
+    };
 
-//   }
+  }
+
+  // function mousePressed(){
+
+  //   for (var i=0; i<200; i++) {
+  //     circles.pop();
+  //     // circles.push(new circle());
+  //   }
+  //   for (var i=0; i<200; i++) {
+  //     // circles.pop();
+  //     circles.push(new circle());
+  //   }
+  //   if(frontc == 0){
+  //     frontc = 255;
+  //     backc = 0;
+  //   }else{
+  //     frontc = 0;
+  //     backc = 255;
+  //   }
+
+  //   }

@@ -7,7 +7,7 @@ function setup() {
    
   
   for (var i=0; i<200; i++) {
-    circles.push(new circle()); //instantiate the circles
+    circles.push(new circle());
   }
  
 }
@@ -15,9 +15,9 @@ function setup() {
   
 function draw() {
   background(backc);
-  for (var i=0; i<circles.length; i++) { //call all of the circles to draw, 
+  for (var i=0; i<circles.length; i++) {
     
-    circles[i].display(); //no arguments for display, all determined inside the function
+    circles[i].display();
   }
   
   
@@ -26,20 +26,19 @@ function draw() {
 function circle() {
   
   // this.diameter = width/15;
-    this.diameter = random(1,width/15); //random width from 1 to width/15
+    this.diameter = random(1,width/15);
 
-  this.position = createVector(random(this.diameter, width - this.diameter),random(this.diameter, width - this.diameter))
-  //create a new vector number of x components, number of y, number of z
+  this.position = createVector(random(this.diameter, width - this.diameter),random(this.diameter, width - this.diameter)) 
   
   this.angle = 0;
   
-  this.col = color(random(0,255),random(0,255),random(0,255),70); //70% opacity
+  this.col = color(random(0,255),random(0,255),random(0,255),70);
   
   this.display = function() {
     noFill();
     stroke(frontc);
     
-    var col_rad = 3;
+    var col_rad = 0.5;
     if(mouseX < this.position.x+this.diameter*col_rad && mouseX > this.position.x - this.diameter*col_rad && mouseY < this.position.y+this.diameter*col_rad && mouseY > this.position.y - this.diameter*col_rad){
       fill(this.col);
       
@@ -77,3 +76,4 @@ function circle() {
 //   }
     
 //   }
+
