@@ -9,18 +9,23 @@ var typecolor;
 var letterstrokeB;
 var letterTotal = 25;
 var letterpos = [];
+var isOverPlayButton;
+var On = true;
+
 
 // var c = color(255, 204, 0);
 
-function preload(){
-  // Sound1 = loadSound('assets/');
+function preload() {
+  SoundBG = loadSound('Assets/Kelly.mp3');
   buttonGraphic = loadImage("Assets/button_01.gif");
   buttonGraphicAlt = loadImage("Assets/buttonstill.png");
 }
 
 function setup() {
-  
-  createCanvas(windowWidth, windowHeight); //this is not updating?
+  SoundBG.loop();
+
+
+  createCanvas(screen.width, screen.height); //this is not updating?
   // for (var i = 0; i < letterTotal; i++) { //i want to create an array of variables names called letterpos_
   //   letterpos[i + 1] = letterwidth * i + lettergap * i;
   //   //do I need to push here?
@@ -31,7 +36,30 @@ function setup() {
 }
 
 function draw() {
+
+  if (On === true) {
+    SoundBG.isPlaying();
+  }
+
   background(0);
+
+  Button(windowWidth * .95, windowHeight * .95);
+  var distanceR = dist(mouseX, mouseY, windowWidth * .95, windowHeight * .95);
+  print(distanceR);
+  //if the disctance less than the circle's radius
+  if (distanceR < buttonradius) {
+    isOverPlayButton = true;
+    cursor(HAND);
+    print("mousewasPressed - turn music on")
+
+  } else {
+    isOverPlayButton = false;
+    cursor(ARROW);
+  }
+
+
+
+
   var r = 3;
   letterwidth = 160;
   letterheight = 240;
@@ -52,25 +80,28 @@ function draw() {
   var letterpos4 = letterwidth * 3 + lettergap * 3;
   var letterpos5 = letterwidth * 4 + lettergap * 4;
   var letterpos6 = letterwidth * 5 + lettergap * 5;
-  var letterpos7 = 2000;
+  var letterpos7 = letterwidth * 6 + lettergap * 6;
   var scaleTypeDown = 1;
-  
+
   if ((windowWidth < 1000) && (windowHeight < 700)) { // display message if screen resolution is too low
-        fill(255);
-        ellipse(100,100,30,30);
+    fill(255);
+    ellipse(100, 100, 30, 30);
 
-    }
-
-
-if (letterpos7>windowWidth){ //how would I make their scale related to the window width, map 1 to 
-  scaleTypeDown = scaleTypeDown*.85;
-} else if (letterpos7<windowWidth){
-    scaleTypeDown = scaleTypeDown*1.85;
-}
+  }
 
 
-push();
-scale(scaleTypeDown,scaleTypeDown);//how would I make their scale related to the window width, map 1 to 
+  if (letterpos7 > windowWidth - 200) { //how would I make their scale related to the window width, map 1 to 
+    scaleTypeDown = scaleTypeDown * .75;
+  } else if (letterpos7 < windowWidth) {
+    scaleTypeDown = scaleTypeDown * 1.85;
+  }
+
+var d = int(dist(letterpos1,0, letterpos7,0));
+  push();
+  print('distance =' +d);
+  print("windowWidth =" +windowWidth);
+  translate((windowWidth-d)/2,0); //get distance from first to last letter, divide by 2
+  scale(scaleTypeDown, scaleTypeDown); //how would I make their scale related to the window width, map 1 to 
   LetterF(letterpos1, wordTopHeight);
   LetterA(letterpos2, wordTopHeight);
   LetterL(letterpos3, wordTopHeight);
@@ -78,24 +109,39 @@ scale(scaleTypeDown,scaleTypeDown);//how would I make their scale related to the
   LetterO(letterpos5, wordTopHeight);
   LetterN(letterpos6, wordTopHeight);
   pop();
-  
+
   noFill();
   strokeWeight(letterstrokeB);
   stroke(typecolor);
   // fill(255);
-  rect(windowWidth-(windowWidth*.95), windowHeight-(windowHeight*.95),windowWidth*.9,windowHeight*.9);
-  
-  image(buttonGraphic, 10,10,30,30); //why doesn't the gif play?
-    image(buttonGraphicAlt, 100,100,30,30);
-   
+  rect(windowWidth - (windowWidth * .95), windowHeight - (windowHeight * .95), windowWidth * .9, windowHeight * .9);
+
+  image(buttonGraphic, 10, 10, 30, 30); //why doesn't the gif play?
+  image(buttonGraphicAlt, 100, 100, 30, 30);
 
 
 
-}//-----------------END OF DRAW-----------------------END OF DRAW-----------------END OF DRAW---------------------------------------------
 
-function Button(xPos, yPos){
-  //fill with gif
-  rect(xPos, yPox, 40,40);
+} //-----------------END OF DRAW-----------------------END OF DRAW-----------------END OF DRAW---------------------------------------------
+
+function mousePressed() {
+  if (isOverPlayButton === true) {
+    if (SoundBG.isPlaying()) { // .isPlaying() returns a boolean
+      SoundBG.pause(); // .play() will resume from .pause() position
+      background(255, 0, 0);
+    } else {
+      SoundBG.play();
+      background(0, 255, 0);
+    }
+  }
+
+}
+
+
+function Button(xPos, yPos) {
+  this.buttonradius = 20;
+  fill(255, 0, 0);
+  ellipse(xPos, yPos, buttonradius, buttonradius);
 }
 
 //-----C---------
@@ -108,7 +154,7 @@ function LetterC(xPos, yPos) { //define arguments and then use them inside the f
   angleMode(DEGREES);
   arc(letterwidth / 2, letterheight / 2.5, letterwidth, letterheight * .8, 180, 350);
   arc(letterwidth / 2, letterheight - letterheight / 2.5, letterwidth, letterheight * .8, 360, 180);
-  line(0,letterheight * .4,  0,letterheight * .6); //left straight line
+  line(0, letterheight * .4, 0, letterheight * .6); //left straight line
   strokeWeight(letterstrokeB);
   stroke(240, 90);
   angleMode(DEGREES);

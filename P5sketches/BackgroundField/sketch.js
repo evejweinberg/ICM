@@ -40,8 +40,37 @@ function setup() {
 
       triangles[i].display(); //no arguments for display, all determined inside the function
     }
+    
+DashedLine(100,100);
+Button(windowWidth/2, windowHeight/2);
 
-
+  }//draw ends here
+  
+  /////////////////////DRAW ENDS///////////////////////////
+  
+  function Button(xPos, yPos){//make this relational to the window width
+    // var this.xPos = 0;
+    // var this.yPos = 0;
+    var rectWidth = 10;
+    var rectHeight = 10;
+    fill(255);
+    stroke(100);
+    strokeWeight(2);
+    rect(xPos, yPos, rectWidth,rectHeight);
+    
+    if (mouseX > xPos && mouseX < xPos+rectWidth && mouseY < yPos+rectHeight && mouseY > yPos){
+      fill(100);
+    }
+  }
+  
+  function DashedLine(xPos, yPos){
+    // var this.xPos = 0;
+    // var this.yPos = 0;
+    var linelength = 10;
+    var space = linelength+10;
+    for (var i = 0; i<20;i++){
+      line(xPos+space*i, yPos, xPos+linelength, yPos);
+    }
   }
 
   function TriangleBackground() {
