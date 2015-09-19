@@ -236,11 +236,10 @@ function LetterF(xPos, yPos) {
   noFill();
   strokeWeight(letterstroke);
   line(0, 0, 0, letterheight);
+  stroke(typecolor);
   line(0, 0, letterwidth, 0); //top bar
+  stroke(typecolor);
   line(0, letterxheight, letterwidth, letterxheight); //bottombar
-  // strokeWeight(letterstrokeB);
-  // stroke(240, 90);
-  // line(letterpos6 + letterwidth / 5, 0 + letterheight / 3, letterpos6 + letterwidth / 5, letterheight); //N
   pop();
 }
 
