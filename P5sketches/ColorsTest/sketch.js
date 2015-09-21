@@ -17,7 +17,7 @@ function setup() {
   ]
 
   shuffledPalette = shufflePalette(palettebluepink); //this variable equals the return of this function
-   print(shuffledPalette);
+  print(shuffledPalette);
 }
 
 function draw() {
@@ -26,12 +26,10 @@ function draw() {
     stroke(shuffledPalette[i % 6]);
     strokeWeight(4);
     line(0 * i, i * 0, 40 * i, 70);
- 
-
   }
 
-  // LetterF(0, 10);
-  // LetterF(100, 10);
+  LetterF(10, 10);
+  LetterF(100, 10);
 
 
 
@@ -41,12 +39,11 @@ function shufflePalette(myPalette) { //pass a palette and return a shuffled vers
   myPalette = myPalette.slice(0); //create a clone so I dont empty the palette. slice(0) returns all the elements WTF
   var newColorOrder = []; //make an empty array
   while (myPalette.length > 0) {
-    //pick a random pill from our array and put it in slot 1
-    var randomIndex = floor(random(myPalette.length)); //pick a random element
-    print("randomIndex" +randomIndex);
-    var randomColor = myPalette.pop(randomIndex); //return the object that i'm popping out of the array
-    newColorOrder.push(randomColor); //push is a function
-     print("randomColor" + randomColor);
+  var randomIndex = floor(random(myPalette.length)); // pick a random index 
+    print("randomIndex " + randomIndex);
+    var randomColor = myPalette.splice(randomIndex, 1).pop(); // extract an array of size 1 and starting at randomIndex, remove the only element it has and store it in randomColor
+    newColorOrder.push(randomColor); // push the object into the new array
+    print("randomColor " + randomColor);
 
   }
   return newColorOrder; //give me the goods
@@ -63,16 +60,16 @@ function randomColorPicker(myPalette) { //access one random element and return i
 
 
 //-----F-------
-// function LetterF(xPos, yPos) { //we use these inside the function then change them in draw. we never have to define them just use them
-//   push();
-//   translate(xPos, yPos); //we use these inside the function then change them in draw
-//   stroke(shuffledPalette random(palette.length));
-//   noFill();
-//   strokeWeight(letterstroke);
-//   line(0, 0, 0, letterheight);
-//   stroke(typecolor);
-//   line(0, 0, letterwidth, 0); //top bar
-//   stroke(typecolor);
-//   line(0, letterxheight, letterwidth, letterxheight); //bottombar
-//   pop();
-// }
+function LetterF(xPos, yPos) { //we use these inside the function then change them in draw. we never have to define them just use them
+  push();
+  translate(xPos, yPos); //we use these inside the function then change them in draw
+  stroke(palettebluepink[1]);
+  noFill();
+  strokeWeight(4);
+  line(0, 0, 0, 100);
+  stroke(palettebluepink[2]);
+  line(0, 0, 40, 0); //top bar
+  stroke(palettebluepink[3]);
+  line(0, 20, 40, 20); //bottombar
+  pop();
+}
