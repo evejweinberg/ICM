@@ -16,7 +16,7 @@ function draw() {
   if (millis() - lastTime > 1000) { //one second
     mode = mode + 1;
     xLocation = xLocation + 10;
-    lastTime = millis();
+    lastTime = millis(); //6sec
   }
   
   if (mode == 0) {

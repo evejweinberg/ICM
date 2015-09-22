@@ -426,3 +426,7 @@ function setGradient(x, y, w, h, c1, c2, axis) {
     }
   }
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
