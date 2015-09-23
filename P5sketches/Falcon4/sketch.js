@@ -34,10 +34,7 @@ function preload() {
 
 function setup() {
 
-  for (var i = 0; i < 500; i++) {
-    triangles.push(new TriangleBackground()); //instantiate the triangles
-    print("triangles printed")
-  }
+
   SoundBG.loop();
   // window.resizeTo(500,500);
 
@@ -60,6 +57,14 @@ function setup() {
   print(shuffledPalette);
   analyzer = new p5.Amplitude();
   analyzer.setInput(SoundBG);
+
+  for (var i = 0; i < 140; i++) {
+    triangles.push(new TriangleBackground()); //instantiate the triangles
+    print("triangles printed")
+  }
+
+  playbutton = new ButtonPlayRevised(windowWidth * .5, windowHeight * .95); //havent displated it yet
+
 
 } //////////////////SETUP ENDS/////////////////////SETUP ENDS////////////////////
 
@@ -140,22 +145,37 @@ function draw() {
 
 
       ellipseMode(CENTER);
-      Button(windowWidth * .5, windowHeight * .95); //draw volume button
+      
 
-      var distanceR = dist(mouseX, mouseY, windowWidth * .5, windowHeight * .95);
-      // print("distance R:" + distanceR);
-      //if the disctance less than the circle's radius
-      if (distanceR < Playbuttonradius) { //which button radius?
+      playbutton.display();
+      var distanceR = dist(mouseX, mouseY, playbutton.x, playbutton.y);
+      // if the disctance less than the circle's radius
+      if (distanceR < playbutton.r) { //which button radius?
         isOverPlayButton = true;
-        // Button.scale = 2;
-        Playbuttonradius = 80;
+       
         cursor(HAND);
-        // print("mousewasPressed - turn music on")
+        
       } else {
         isOverPlayButton = false;
         cursor(ARROW);
-        Playbuttonradius = 60;
+        
       }
+      
+      // Button(windowWidth * .5, windowHeight * .95); //draw volume button
+      // var distanceR = dist(mouseX, mouseY, windowWidth * .5, windowHeight * .95);
+      // print("distance R:" + distanceR);
+      //if the disctance less than the circle's radius
+      // if (distanceR < Playbuttonradius) { //which button radius?
+      //   isOverPlayButton = true;
+      //   // Button.scale = 2;
+      //   Playbuttonradius = 80;
+      //   cursor(HAND);
+      //   // print("mousewasPressed - turn music on")
+      // } else {
+      //   isOverPlayButton = false;
+      //   cursor(ARROW);
+      //   Playbuttonradius = 60;
+      // }
 
 
 
@@ -186,16 +206,13 @@ function draw() {
 
       triangles[h].display(); //no arguments for display, all determined inside the function
     }
-    push();
-    // var a = atan2(posY - height / 2, posX - width / 2);
-    // rotate(a);
-    translate(width / 2, height / 2);
-    DashedLine(0, 0);
-    DashedLine(-width, 0);
-    rotate(45);
-    DashedLine(0, 0);
-    DashedLine(width / 2 - 10, height / 2);
-    pop();
+
+
+    DashedLine(width * .05, height / 2, 0);
+    DashedLine(width * .95, height / 2, 0);
+    DashedLine(width / 2 - 230, height * .95, 0);
+    DashedLine(width / 2 - 230, height * .05, 0);
+
 
     Button(windowWidth * .5, windowHeight * .95);
     var distanceS = dist(mouseX, mouseY, windowWidth * .5, windowHeight * .95);
@@ -278,6 +295,29 @@ function ButtonNext(xPos, yPos) {
   fill(palettebluepink[5]);
   text("NEXT", xPos, yPos + 10);
   noFill();
+}
+
+function ButtonPlayRevised(x, y, speed) { //set it up in setup
+
+
+  this.x = x;
+  this.y = y;
+  this.r = 60;
+
+  this.display = function() {
+
+    fill(palettebluepink[2]);
+    strokeWeight(4);
+    stroke(palettebluepink[0]);
+    ellipse(this.x, this.y, this.r, this.r);
+    image(volume, this.x - 20, this.y - 20, 40, 40);
+
+    if (dist(mouseX, mouseY, this.x, this.y) < this.r / 2) {
+      this.r = 80;
+    } else {
+      this.r = 60;
+    }
+  }
 }
 
 function ButtonNextTri(xPos, yPos) {
@@ -433,41 +473,42 @@ function LetterL(xPos, yPos) {
 
 
 
-function DashedLine(xPos, yPos) {
+function DashedLine(xPos, yPos, lineRotation) {
   var linelength = 15;
   push();
+  rotate(lineRotation);
   translate(xPos, yPos);
-  strokeWeight(5);
+  strokeWeight(3);
 
   for (var i = 0; i < 20; i++) {
     stroke(palettebluepink[i % 8]);
-
     line(i * 25, 0, linelength + i * 25, 0);
   }
   pop();
 }
 
 function TriangleBackground() {
-  // var a = atan2(mouseY - height / 2, mouseX - width / 2);
   this.Centerposition = createVector(random(0, windowWidth), random(0, windowHeight)); //the centerpoint can be anywhere
   this.opacity = 90;
   // this.col = color(palettebluepink[2]), this.opacity); //70% opacity, mostly blue
-  var triWidth = random(6, 50);
+  var triWidth = random(12, 100);
   var df = dist(mouseX, mouseY, this.Centerposition.x, this.Centerposition.y);
+  this.colorIndex = floor(random(palettebluepink.length));
+
 
   this.display = function() {
-    stroke(100); //want this to be a random color from my array
+    stroke(palettebluepink[this.colorIndex], this.opacity); //want this to be a random color from my array
     var mouseradius = 100;
-    strokeWeight(2);
+    strokeWeight(5);
     this.opacity = 70;
-    fill(palettebluepink[2]);
+    fill(palettebluepink[this.colorIndex], 30); //now I can access the colors and create a number/intenger
 
     //------------if mouse is near the cneter of the triangle, dim it down----------------
-    while (mouseX > this.Centerposition.x + (-1 * mouseradius) && mouseX < this.Centerposition.x + (mouseradius) && mouseY > this.Centerposition.y + (-1 * mouseradius) && mouseY < this.Centerposition.y + (mouseradius)) {
+    if (mouseX > this.Centerposition.x + (-1 * mouseradius) && mouseX < this.Centerposition.x + (mouseradius) && mouseY > this.Centerposition.y + (-1 * mouseradius) && mouseY < this.Centerposition.y + (mouseradius)) {
       this.opacity = 10;
-      fill(240, this.opacity);
-      strokeWeight(1);
-      stroke(160, this.opacity * 5);
+      fill(palettebluepink[4], 60);
+      strokeWeight(0);
+      stroke(palettebluepink[this.colorIndex], 30);
       if (mouseX > width / 2) {
         this.Centerposition.x = this.Centerposition.x + df / 2;
       } else {
