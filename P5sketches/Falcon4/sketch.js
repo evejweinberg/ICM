@@ -521,9 +521,7 @@ function TriangleBackground() {
 
     translate(this.Centerposition.x, this.Centerposition.y);
     rotate(a);
-    // scale(sliderChange,sliderChange);
-    // rotate somehow ----- this.angle = atan2(mouseY - this.position.y, mouseX - this.position.x);
-    // triangle(this.Centerposition.x, this.Centerposition.y - 30, this.Centerposition.x + triWidth, this.Centerposition.y + triWidth, this.Centerposition.x - triWidth, this.Centerposition.y + triWidth);
+   
     triangle(0, 0 - triWidth*1.8, 0 + triWidth, 0 + triWidth, 0 - triWidth, 0 + triWidth);
 
     noFill();
