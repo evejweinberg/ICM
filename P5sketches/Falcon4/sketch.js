@@ -14,6 +14,7 @@ var isOverPlayButton;
 var isOverNextButton;
 var mode;
 var On = true;
+var rSlider;
 
 var palettebluepink;
 //i can make another color palette !
@@ -34,12 +35,13 @@ function preload() {
 
 function setup() {
 
-
+  windowResized(); //why does this not work?
   SoundBG.loop();
-  // window.resizeTo(500,500);
+
 
   mode = 1;
   createCanvas(screen.width, screen.height);
+  // createCanvas(displayWidth, displayHeight); //?
 
   var dim = width / 2;
   palettebluepink = [
@@ -58,17 +60,19 @@ function setup() {
   analyzer = new p5.Amplitude();
   analyzer.setInput(SoundBG);
 
-  for (var i = 0; i < 140; i++) {
+  for (var i = 0; i < 200; i++) {
     triangles.push(new TriangleBackground()); //instantiate the triangles
     print("triangles printed")
   }
 
-  playbutton = new ButtonPlayRevised(windowWidth * .5, windowHeight * .95); //havent displated it yet
+  playbutton = new ButtonPlayRevised(windowWidth * .5, windowHeight * .95); //havent displated it yet, why is it not always centered?
+  rSlider = createSlider(0, width, 100); // min, max, startingpoint
 
 
 } //////////////////SETUP ENDS/////////////////////SETUP ENDS////////////////////
 
 function draw() {
+
 
   if (On === true) {
     SoundBG.isPlaying();
@@ -145,37 +149,21 @@ function draw() {
 
 
       ellipseMode(CENTER);
-      
+
 
       playbutton.display();
       var distanceR = dist(mouseX, mouseY, playbutton.x, playbutton.y);
       // if the disctance less than the circle's radius
       if (distanceR < playbutton.r) { //which button radius?
         isOverPlayButton = true;
-       
-        cursor(HAND);
-        
+
+        cursor(HAND); //need to move both buttons into one if/else statement so the cursor works
+
       } else {
         isOverPlayButton = false;
         cursor(ARROW);
-        
+
       }
-      
-      // Button(windowWidth * .5, windowHeight * .95); //draw volume button
-      // var distanceR = dist(mouseX, mouseY, windowWidth * .5, windowHeight * .95);
-      // print("distance R:" + distanceR);
-      //if the disctance less than the circle's radius
-      // if (distanceR < Playbuttonradius) { //which button radius?
-      //   isOverPlayButton = true;
-      //   // Button.scale = 2;
-      //   Playbuttonradius = 80;
-      //   cursor(HAND);
-      //   // print("mousewasPressed - turn music on")
-      // } else {
-      //   isOverPlayButton = false;
-      //   cursor(ARROW);
-      //   Playbuttonradius = 60;
-      // }
 
 
 
@@ -202,16 +190,19 @@ function draw() {
 
   if (mode === 2) { //mode 2
 
+    rSlider.position(width / 2 - 100, height * .8);
+    var sliderChange = rSlider.value();
+
     for (var h = 0; h < triangles.length; h++) { //call all of the circles to draw, 
 
       triangles[h].display(); //no arguments for display, all determined inside the function
     }
 
 
-    DashedLine(width * .05, height / 2, 0);
-    DashedLine(width * .95, height / 2, 0);
-    DashedLine(width / 2 - 230, height * .95, 0);
-    DashedLine(width / 2 - 230, height * .05, 0);
+    DashedLine(width * .05 + sliderChange, height / 2, 0);
+    DashedLine(width * .95 + sliderChange, height / 2, 0);
+    DashedLine(width / 2 - 230 + sliderChange, height * .95, 0);
+    DashedLine(width / 2 - 230 + sliderChange, height * .05, 0);
 
 
     Button(windowWidth * .5, windowHeight * .95);
@@ -240,11 +231,17 @@ function draw() {
       isOverNextButton = false;
       cursor(ARROW);
     }
+
+
   } ////mode 2 ends
 
 
 
 } ///////////////////-END OF DRAW/////////////////END OF DRAW-/////////////////END OF DRAW/////////////////
+
+function ChangeMouse (){
+  
+}
 
 function mousePressed() {
   if (isOverPlayButton === true) {
@@ -309,11 +306,11 @@ function ButtonPlayRevised(x, y, speed) { //set it up in setup
     fill(palettebluepink[2]);
     strokeWeight(4);
     stroke(palettebluepink[0]);
-    ellipse(this.x, this.y, this.r, this.r);
-    image(volume, this.x - 20, this.y - 20, 40, 40);
+    ellipse(x, y, this.r, this.r);
+    image(volume, x - 20, y - 20, 40, 40);
 
     if (dist(mouseX, mouseY, this.x, this.y) < this.r / 2) {
-      this.r = 80;
+      this.r = 70;
     } else {
       this.r = 60;
     }
@@ -491,7 +488,7 @@ function TriangleBackground() {
   this.Centerposition = createVector(random(0, windowWidth), random(0, windowHeight)); //the centerpoint can be anywhere
   this.opacity = 90;
   // this.col = color(palettebluepink[2]), this.opacity); //70% opacity, mostly blue
-  var triWidth = random(12, 100);
+  var triWidth = random(6, 20);
   var df = dist(mouseX, mouseY, this.Centerposition.x, this.Centerposition.y);
   this.colorIndex = floor(random(palettebluepink.length));
 
@@ -503,24 +500,32 @@ function TriangleBackground() {
     this.opacity = 70;
     fill(palettebluepink[this.colorIndex], 30); //now I can access the colors and create a number/intenger
 
+//i want to map saturation onto this center with distance mapping to sat. 
     //------------if mouse is near the cneter of the triangle, dim it down----------------
     if (mouseX > this.Centerposition.x + (-1 * mouseradius) && mouseX < this.Centerposition.x + (mouseradius) && mouseY > this.Centerposition.y + (-1 * mouseradius) && mouseY < this.Centerposition.y + (mouseradius)) {
       this.opacity = 10;
-      fill(palettebluepink[4], 60);
+      fill(50, 60);
       strokeWeight(0);
       stroke(palettebluepink[this.colorIndex], 30);
-      if (mouseX > width / 2) {
-        this.Centerposition.x = this.Centerposition.x + df / 2;
-      } else {
-        this.Centerposition.x = this.Centerposition.x - df / 2;
-      }
-
+    }
+    
+      if (mouseX > this.Centerposition.x + (-2 * mouseradius) && mouseX < this.Centerposition.x + (mouseradius*2) && mouseY > this.Centerposition.y + (-1 * mouseradius) && mouseY < this.Centerposition.y + (mouseradius)) {
+      
+      fill(90, 60);
+      strokeWeight(0);
+      stroke(palettebluepink[this.colorIndex], 30);
     }
 
     push();
+    var a = atan2(mouseY - height / 2, mouseX - width / 2);
 
+    translate(this.Centerposition.x, this.Centerposition.y);
+    rotate(a);
+    // scale(sliderChange,sliderChange);
     // rotate somehow ----- this.angle = atan2(mouseY - this.position.y, mouseX - this.position.x);
-    triangle(this.Centerposition.x, this.Centerposition.y - 30, this.Centerposition.x + triWidth, this.Centerposition.y + triWidth, this.Centerposition.x - triWidth, this.Centerposition.y + triWidth);
+    // triangle(this.Centerposition.x, this.Centerposition.y - 30, this.Centerposition.x + triWidth, this.Centerposition.y + triWidth, this.Centerposition.x - triWidth, this.Centerposition.y + triWidth);
+    triangle(0, 0 - triWidth*1.8, 0 + triWidth, 0 + triWidth, 0 - triWidth, 0 + triWidth);
+
     noFill();
     pop();
 
@@ -531,26 +536,26 @@ function TriangleBackground() {
 /////////////COLOR PALETTE/////////////////////////
 
 function shufflePalette(myPalette) { //pass a palette and return a shuffled version of the palette
-  myPalette = myPalette.slice(0); //create a clone so I dont empty the palette. slice(0) returns all the elements WTF
+  myPalette = myPalette.slice(0); //create a clone so I dont empty the palette. slice(0) returns all the elements. WTF?
   var newColorOrder = []; //make an empty array
-  while (myPalette.length > 0) {
-    var randomIndex = floor(random(myPalette.length)); // pick a random index 
+  while (myPalette.length > 0) { //do this as long as there are more things in the array
+    var randomIndex = floor(random(myPalette.length)); // new variable, an int, from zero to my argument's length 
     // print("randomIndex " + randomIndex);
-    var randomColor = myPalette.splice(randomIndex, 1).pop(); // extract an array of size 1 and starting at randomIndex, remove the only element it has and store it in randomColor
+    var randomColor = myPalette.splice(randomIndex, 1).pop(); // extract an array of size 1 and starting at randomIndex, remove the only element it has and store it in 'randomColor'
     newColorOrder.push(randomColor); // push the object into the new array
     // print("randomColor " + randomColor);
 
   }
-  return newColorOrder; //give me the goods
+  return newColorOrder; //when done running, give me the new array. Now where do we use this in the setup/draw?
 
 }
 
-function randomColorPicker(myPalette) { //access one random element and return it
+function randomColorPicker(myPalette) { //access one random element and return it, i can change the array inside 'myPalette' when i call it
 
   var randomIndex = floor(random(myPalette.length)); //give me an int between 0 and my color palette's length
   // print(randomIndex);
-  var randomColor = myPalette[randomIndex]; //this references my argument, so I can pull from any palette later
-  return randomColor; //give me something
+  var randomColor = myPalette[randomIndex]; //this references my argument, remember that I can pull from any palette later
+  return randomColor; //give me a line from that array
 }
 
 
