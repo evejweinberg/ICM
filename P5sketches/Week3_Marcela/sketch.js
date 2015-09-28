@@ -1,12 +1,12 @@
 function Circle(_x, _y, _dia, _speed) { //new circle object
-  this.x = _x; //data
+  this.x = _x; //did we make up the 'x' part?
   this.y = _y; //own version of a Y for each circle
   this.dia = _dia; //own version of a diameter
 
-  if (random(1) < 0.5) {
-    this.speed = _speed;
+  if (random(1) < 0.5) { //half of the time(ish)
+    this.speed = _speed; //speed is speeed, straight up
   } else {
-    this.speed = _speed * -1;
+    this.speed = _speed * -1; //otherwise, speed is negative speed
   }
 
 
@@ -20,7 +20,7 @@ function Circle(_x, _y, _dia, _speed) { //new circle object
   }
   this.draw = function() {
     noStroke();
-    ellipse(this.x, this.y, this.dia, this.dia);
+    ellipse(this.x, this.y, this.dia, this.dia); //
   }
 }
 
@@ -37,7 +37,7 @@ var distance;
 function setup() {
   createCanvas(900, 600);
   for (var i = 0; i < 10; i++) { //ten new circles
-    circles.push(new Circle(-15, i * 70 + 70, 30, random(3, 10))); //put them into the array
+    circles.push(new Circle(-15, i * 70 + 70, 30, random(3, 10))); //put them into the array, make them at (-15, moving 70 up each time, 30radius, random speed)
   }
   mePosX = width / 2; //start main dot here
   mePosY = height; //start main dot here
@@ -59,13 +59,13 @@ function draw() {
 
 
   for (var i = 0; i < circles.length; i++) { //vist all the circles
-    distance = dist(mePosX, mePosY, circles[i].x, circles[i].y);
-    circles[i].update();
+    distance = dist(mePosX, mePosY, circles[i].x, circles[i].y); //dist(mainBall, this circle)
+    circles[i].update(); //if it goes off the screen, start it over
     fill(200, distance/2, distance);
-    circles[i].draw();
-    if (distance < meDia / 2 + 15) {
-      background(244, 0, 73);
-      meDia += 3;
+    circles[i].draw();//no stroke and where to put the circle is an argument
+    if (distance < meDia / 2 + 15) { //if the dist from this circle to the main ball is less than the circle plus 15
+      background(244, 0, 73); //change background
+      meDia += 3; //make diameter bigger by 3
     }
 
     if (mePosY < 0) { //if you make it to the top!
@@ -85,7 +85,7 @@ function draw() {
     }
     
 
-    if (meDia > 1000) { //if the circle gest too big
+    if (meDia > 1000) { //if the circle gets too big
       rectMode(CENTER)
       fill(19, 61, 87);
       rect(500, 500, 1000, 1000);
@@ -106,7 +106,7 @@ function draw() {
 
 
   noStroke();
-  fill(244, 0, 73,myOpac);
+  fill(244, 0, 73,myOpac); 
 
   ellipse(mePosX, mePosY, meDia, meDia); //draw the main circle
 
@@ -132,13 +132,13 @@ function draw() {
 
 }
 
-function mouseDragged() {
+function mouseDragged() { //if mouse is being held down and moving
   circles.push(new Circle(mouseX, mouseY, 30, random(3, 10))); //if mouse is moving, push new circles into the array, at the mouse and 
 }
 
 function keyPressed() {
-  if (keyCode == UP_ARROW) {
-    mePosY -= 10;
+  if (keyCode == UP_ARROW) { //if up arrow is pressed
+    mePosY -= 10; //main ball Y variable decreases by 10
   } else if (keyCode == DOWN_ARROW) {
     mePosY += 10;
   } else if (keyCode == RIGHT_ARROW) {

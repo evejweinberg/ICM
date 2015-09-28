@@ -517,7 +517,8 @@ function TriangleBackground() {
     }
 
     push();
-    var a = atan2(mouseY - height / 2, mouseX - width / 2);
+    // var a = atan2(mouseY - height / 2, mouseX - width / 2); //arc tangent
+      var a = atan2(mouseY - this.Centerposition.y, mouseX - this.Centerposition.x); //arc tangent
 
     translate(this.Centerposition.x, this.Centerposition.y);
     rotate(a);
@@ -559,16 +560,6 @@ function randomColorPicker(myPalette) { //access one random element and return i
 
 function drawGradient(x, y) {
 
-  // var radius = dim / 2;
-  // var h = 200;
-  // noStroke();
-  // ellipseMode(RADIUS);
-  // for (var r = radius; r > 0; --r) { //incrementing down
-  //   colorMode(HSB, 360, 100, 100);
-  //   fill(260, h, h); //RGB
-  //   ellipse(x, y, r, r);
-  //   h = (h + 1) % 360;
-  // }
 }
 
 
