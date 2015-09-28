@@ -3,15 +3,13 @@ var sprite = [];
 var gridTotalCols = 12;
 var gridTotalRows = 12;
 var GridLines;
-var NeutraBold;
-var BGtemp;
+var NeutraBold, BGtemp;
 var center;
-var Y_AXIS = 1;
-var X_AXIS = 2;
 var b1, b2, c1, c2;
 var LghtPur, DrkPur, Teal;
 var h1, h2, h3, h4;
 var strkwght;
+var spritetotal = 12;
 
 function preload() {
   NeutraBold = loadFont('Assets/NeutraText-Bold.otf');
@@ -23,12 +21,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   sineS = new SineSlider(floor(width * (1 / gridTotalCols)), floor(height * (8 / gridTotalRows)) - 40, floor(width * (10 / gridTotalCols)), 10, 0.09, (242, 121, 218), (255, 9, 200));
-  print("SineSlider");
   LghtPur = color(125, 88, 183);
   DrkPur = color(84, 46, 150);
   Teal = color(33, 173, 146);
   strkwght = 1;
-
 
 
   GridLines = [ //create an array for the 12 heights
@@ -46,33 +42,35 @@ function setup() {
     floor(height * (12 / gridTotalRows))
   ];
 
-  sprite[1] = new spriteBalls(90, GridLines[1]);
-  // sprite[2] = new spriteBalls(70, floor(height * (2 / gridTotalRows)));
-  sprite[2] = new spriteBalls(70, GridLines[2]);
-  // print(GridLines[2]);
+  push();
+  translate(-5 * width, -5 * height);//why only displaying 1 row
+  for (var i = 0; i < spritetotal; i++) {
+    for (var j = 0; j < spritetotal; j++) {
+      sprite[i] = new spriteBalls(GridLines[j], GridLines[i]);
+    }
+  }
+  pop();
+
 }
 
 
 function draw() {
-  h1 = windowWidth / 26;
-  h2 = windowWidth / 63;
-  image(BGtemp, 0, 0, width, height);
-  center = createVector(width / 2, height / 2);
-  print("center is" + center);
+  textSize();
+  center = createVector(width / 2, height / 2); //how do I use this vector?
+  // image(BGtemp, 0, 0, width, height);
   background(DrkPur);
 
 
 
-
+  /////////MAKE GRID/////////
   for (var i = 0; i < gridTotalRows; i++) {
     for (var j = 0; j < gridTotalCols; j++) {
       // stroke(0);
-      fill(255);
+      fill(LghtPur);
       noStroke();
-
       var size = floor((dist(mouseX, mouseY, j * width / gridTotalRows, GridLines[i]) / 62));
-      if (size > 7) {
-        size = 7;
+      if (size > 9) {
+        size = 9;
       }
       rect(j * width / gridTotalRows, GridLines[i], size, size);
     }
@@ -88,21 +86,31 @@ function draw() {
   textSize(h1);
   text("   I Have an Idea!\nHere, you take it:", center.x - 200, GridLines[1] - h2);
 
-  WTF(center.x, GridLines[0] - height / 15);
+  WTF(center.x, GridLines[0] - height / 12);
+  print("WTF")
 
   sineS.display();
-  sprite[1].display();
-  sprite[2].display();
+  for (var k = 0; k < spritetotal; k++) {
+    sprite[k].display();
 
-  if (mouseIsPressed) {
-    sprite[2].explode();
-    sprite[1].explode();
   }
 
-  if (mouseIsPressed && WTF.WTFisOn == true) {
+  if (mouseIsPressed) {
+    for (var l = 0; l < spritetotal; l++) {
+      sprite[l].explode();
+    }
+
+  }
+
+  if (mouseIsPressed && WTF.WTFisOn === true) {
     print("it's on they really wanna know");
     WTF.grow = 3;
   }
+}
+
+function textSize() {
+  this.h1 = windowWidth / 26; //how do I use these globally?
+  this.h2 = windowWidth / 63;
 }
 
 
@@ -118,6 +126,8 @@ function WTF(xPos, yPos) {
   var dx = 120;
   var grow = 1;
   this.WTFisOn = false;
+  var rectW;
+  var rectH;
 
 
   textAlign(CENTER);
@@ -125,7 +135,7 @@ function WTF(xPos, yPos) {
   noStroke();
   textLeading(20);
   textFont(NeutraBold);
-  textSize(h2);
+  textSize(textSize.h2);
   text("WTF is THIS SITE?", xPos, yPos);
   fill(Teal);
   stroke(255);
@@ -133,26 +143,23 @@ function WTF(xPos, yPos) {
   push();
   scale(grow, grow);
   rectMode(CENTER);
-  rect(xPos + dx, yPos - h2 / 2.5, h2, h2);
+  rect(xPos + dx, yPos - textSize.h2 / 2.5, textSize.h2, textSize.h2); //it doesn't know h2
   fill(255);
   noStroke();
   text("?", xPos + dx, yPos);
   pop();
-  if (dist(mouseX, mouseY, xPos + dx, yPos - h2 / 2.5) < h2) {
+  if (dist(mouseX, mouseY, xPos + dx, yPos - textSize.h2 / 2.5) < textSize.h2) {
     print("WTF i wanna know!!!")
     this.grow = 3;
     this.WTFisOn = true;
   }
-
-  this.boxGrow = function() {
-    fill(Teal);
-    stroke(255);
-    strokeWeight(strkwght);
-    // rect(x,y,w,h);
-
-
-
-
-
+  
+  //when MouseinClicked, call his
+  this.grow = function(){
+    rectH = 40;
+    rectW =50;
+  
   }
+
+  
 }
