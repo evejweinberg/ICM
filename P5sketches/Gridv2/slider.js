@@ -58,10 +58,7 @@ function SineSlider(xpos_, ypos_, w_, intensity_, frequency_, strokeC_, fillC_) 
       print("you're dragging the slider")
     }
 
-    // if (mouseX > (this.val1) - this.sliderHeight / 2 && mouseX < (this.sliderX + this.position.x) + this.sliderWidth / 2 && mouseY > this.sliderY - this.sliderWidth / 2 && mouseY < this.sliderY + this.sliderWidth / 2) {
-    //   this.selected = true;
-    //   print("you're on the slider")
-    // }
+   
     
     if (!mouseIsPressed) {
       this.selected = false;

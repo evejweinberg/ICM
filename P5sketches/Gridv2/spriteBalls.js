@@ -31,7 +31,7 @@ function spriteBalls(xPos, yPos) {
   this.explode = function() {
 
     if (this.pct < 1.0) {
-      print("yes, it is")
+      print("sprite is exploding")
       this.startX = this.startX + ((this.endptA_x - this.startX) * this.pct);
       this.startY = this.startY + ((this.endptA_y - this.startX) * this.pct);
       this.pct += this.step; //add .005 each frame
