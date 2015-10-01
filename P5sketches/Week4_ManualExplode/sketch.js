@@ -1,46 +1,49 @@
 var totalParticles = 12; //number of total particles
 var arrayOfBalls = []; //empty array to be filled
 var arrayOfLines = [];
+var rect1, rect2, rect3;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-
-
-  // for (var i = 0; i < totalParticles; i++) {
-
-  //   arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
-
-  //   arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
-  // }
-
-
-
 }
 
 function draw() {
-background(255);
+  background(255);
 
-for (var i = 0; i < arrayOfBalls.length; i++) {
+  rect1 = new RectFrames(width/2,height/2);
+  rect2 = new RectFrames(width/2,height/2);
+  rect3 = new RectFrames(width/2,height/2);
+  rect1.display();
+  rect1.move();
+  rect2.display();
+  rect2.move();
+  rect3.display();
+  rect3.move();
+
+
+  for (var i = 0; i < arrayOfBalls.length; i++) {
     arrayOfBalls[i].display(); //display them all
     arrayOfBalls[i].explode(); //explode them all
     // arrayOfLines[i].display(); //display them all
     // arrayOfLines[i].explode(); //explode them all
-}
-for (var i = 0; i < arrayOfLines.length; i++) {
+  }
+  for (var i = 0; i < arrayOfLines.length; i++) {
     arrayOfLines[i].display(); //display them all
     arrayOfLines[i].explode(); //explode them all
-}
+  }
+
+
 
 }
 
 function mousePressed() {
   print("mouseispressed")
-for (var i = 0; i < totalParticles; i++) {
+  for (var i = 0; i < totalParticles; i++) {
 
-  arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+    arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
 
-  arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+    arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
   }
 }
 
