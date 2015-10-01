@@ -24,44 +24,54 @@ function spriteBalls(xPos, yPos) {
     ellipse(this.x, this.y, 5, 5);
     strokeWeight(2);
     stroke(150, 236, 255);
-    ellipse(this.startX, this.startY, 12,12)
+    ellipse(this.startX, this.startY, 12, 12)
 
   }
 
   this.explode = function() {
+    this.angle = 0.0;
+    this.offset = 60;
+    this.scalar = 40;
+    this.speed = 0.05;
+    this.y1 = this.offset + sin(this.angle) * this.scalar;
+    this.y2 = this.offset + sin(this.angle + 0.4) * this.scalar;
+    this.y3 = this.offset + sin(this.angle + 0.8) * this.scalar;
+    ellipse(80, this.y1, 40, 40);
+    ellipse(120, this.y2, 40, 40);
+    ellipse(160, this.y3, 40, 40);
+    this.angle += this.speed;
 
-    if (this.pct < 1.0) {
-      print("sprite is exploding")
-      this.startX = this.startX + ((this.endptA_x - this.startX) * this.pct);
-      this.startY = this.startY + ((this.endptA_y - this.startX) * this.pct);
-      this.pct += this.step; //add .005 each frame
-    }
+    //   if (this.pct < 1.0) {
+    //     print("sprite is exploding")
+    //     this.startX = this.startX + ((this.endptA_x - this.startX) * this.pct);
+    //     this.startY = this.startY + ((this.endptA_y - this.startX) * this.pct);
+    //     this.pct += this.step; //add .005 each frame
+    //   }
 
-    this.dx = this.targetX - this.x;
-    this.dy = this.targetY - this.y; //distance to target
-    // this.dxLeft = this.targetX + this.x;
-    // this.dyUp = this.targetY + this.y; //distance to target
-    // lerp(start,stop,amt)
-
-    if (abs(this.dy) > 1) { //if you are not on the Y target go there 
-      this.y += this.dy * this.easing;
-    }
-
-    if (abs(this.dx) > 1) {
-      this.x += this.dx * this.easing;
-    }
-
-    this.targetX = this.x + this.distance; //20px away
-    this.targetY = this.y + this.distance;
+    //   this.dx = this.targetX - this.x;
+    //   this.dy = this.targetY - this.y; //distance to target
 
 
+    //   if (abs(this.dy) > 1) { //if you are not on the Y target go there 
+    //     this.y += this.dy * this.easing;
+    //   }
 
-    //loop it!
-    if (millis() - this.lastTime > 1000) { //this will only last one second
-      this.y = yPos;
-      this.x = xPos;
-      this.lastTime = millis(); //6sec
-    }
+    //   if (abs(this.dx) > 1) {
+    //     this.x += this.dx * this.easing;
+    //   }
 
+    //   this.targetX = this.x + this.distance; //20px away
+    //   this.targetY = this.y + this.distance;
+
+
+
+    //   //loop it!
+    //   if (millis() - this.lastTime > 1000) { //this will only last one second
+    //     this.y = yPos;
+    //     this.x = xPos;
+    //     this.lastTime = millis(); //6sec
+    //   }
+
+    // }
   }
 }
