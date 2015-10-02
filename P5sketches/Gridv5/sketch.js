@@ -68,18 +68,6 @@ function setup() {
 
 
 
-
-  // for (var i = 0; i < gridTotalRows; i++) {
-  //   for (var j = 0; j < gridTotalCols; j++) {
-  //     sprite[i] = new spriteBalls(j * width / gridTotalRows, i * width / gridTotalCols);
-
-  //   }
-  // }
-
-  //system.push(new ParticleSystem(createVector(width / gridTotalRows, height / gridTotalCols)));
-  //system.push(new ParticleSystem(createVector(2 * width / gridTotalRows, 5 * width / gridTotalCols)));
-
-
 } //////SETUP ENDS///////////SETUP ENDS///////////SETUP ENDS///////////SETUP ENDS//////////
 
 
@@ -98,22 +86,11 @@ function draw() {
    for (var i = 0; i < arrayOfBalls.length; i++) {
     arrayOfBalls[i].display(); //display them all
     arrayOfBalls[i].explode(); //explode them all
-    // arrayOfLines[i].display(); //display them all
-    // arrayOfLines[i].explode(); //explode them all
 }
 for (var i = 0; i < arrayOfLines.length; i++) {
     arrayOfLines[i].display(); //display them all
     arrayOfLines[i].explode(); //explode them all
 }
-
-
-
-
-
-  // if (mouseIsPressed && wtf.WTFisOn === true) {
-  //   //print("it's on they really wanna know");
-  //   wtf.grow = 3;
-  // }
 
 
 
@@ -211,9 +188,9 @@ function mousePressed() {
   print("mouseispressed")
 for (var i = 0; i < totalParticles; i++) {
 
-  arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+  arrayOfBalls.push(new Ball(mouseX, mouseY, mouseX+random(-width, width), mouseY+random(-height, height))); //push new particles
 
-  arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+  arrayOfLines.push(new Line(mouseX, mouseY, mouseX+random(-width, width), mouseY+random(-height, height))); //push new particles
   }
   }
   

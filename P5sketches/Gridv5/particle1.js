@@ -57,14 +57,7 @@ Particle.prototype.displayballs = function() {
 
 // Method to display, static stuff
 Particle.prototype.display = function() {
-  // stroke(palettePastels[4], this.lifespan);
-  // strokeWeight(2);
-  // noFill()
-  // ellipse(this.position.x, this.position.y, this.size/2, this.size/2);
-  // noStroke();
-  // fill(palettePastels[2], this.lifespan);
-  // ellipse(this.position.x, this.position.y, this.size, this.size);
-  // noFill();
+
  
 
   if (millis() % 50) {

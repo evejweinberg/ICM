@@ -152,10 +152,10 @@ function LetterH(xPos, yPos) {
   stroke(palettebluepink[5]);
   line(0, 0, 0, letterheight);//left
   stroke(palettebluepink[6]);
-  line(0, letterheight, letterwidth, letterxheight); //top bar
+  line(0, letterxheight, letterwidth, letterxheight); //top bar
   line(letterwidth, 0, letterwidth, letterheight);//right
   strokeWeight(letterstrokeB);
   stroke(240, 90);
-  line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
+  // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
 }
