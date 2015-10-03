@@ -18,16 +18,16 @@ function Ball(x, y, targetX, targetY) {
 
     noStroke();
     print("ellipse")
-    // ellipse(this.x, this.y, this.size, this.size); //these rotate later
+      // ellipse(this.x, this.y, this.size, this.size); //these rotate later
     push();
     translate(this.x - 10, this.y - 10);
-    fill(255, 0, 0); //red
+    fill(palettebluepink[1]); //red
 
-        ellipse(this.x, this.y, this.size, this.size); //these rotate later
+    ellipse(this.x, this.y, this.size, this.size); //these rotate later
     rotate(this.size / 5); //spin rectangles around
-    fill(0, 0, 255); //blue
+    fill(palettebluepink[2]); //blue
     rect(10, 10, this.size, this.size);
-        
+
 
     pop();
 
@@ -39,10 +39,10 @@ function Ball(x, y, targetX, targetY) {
     push();
     translate(this.xStatic, this.yStatic);
     rotate(this.size / 50); //rotate whole explosion
-    fill(0, 255, 0)
+    fill(palettebluepink[0]);
     textAlign(CENTER);
     textSize(40 + this.size);
-    text("Thanks", 0, 0);
+    text("Enter", 0, 0);
     pop();
     // print("exploding")
     this.size = this.size - 1; //decrease size by 1;
@@ -74,29 +74,27 @@ function Line(x, y, targetX, targetY) {
   this.display = function() {
     if (this.size > 45) {
       this.linelength = 100;
-    } else if (this.size == 45 && this.size > 20) {
+    } else if (this.size == 45 && this.size > 24) {
       this.linelength = this.linelength + 15;
-    } else if (this.size < 20) {
+    } else if (this.size < 24) {
       this.linelength = this.linelength - 7;
     }
     if (this.linelength <= 0) {
       this.linelength = 0;
     }
-    strokeWeight(5);
     push();
     translate(this.x, this.y);
-    // var angle = atan2(0, this.targetX);
-    // rotate(angle);
-    stroke(0, 0, 255);
     noFill();
-    //line(0, 0, this.linelength, this.linelength);
-    strokeWeight(10);
+    strokeWeight(3);
     var angle2 = atan2(this.target.y - this.y, this.target.x - this.x);
     rotate(angle2);
     print("angle2:" + angle2)
     var distance = dist(this.x, this.y, 0, 0);
+    stroke(palettebluepink[2]);
     line(0, 0, this.linelength, this.linelength);
-    line(distance - this.linelength, 0, distance, 0);
+    stroke(palettebluepink[0]);
+    line(0,0, this.linelength, this.linelength);
+    // line(distance - this.linelength, 0, distance, 0);
     pop();
   }
 

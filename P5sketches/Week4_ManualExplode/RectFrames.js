@@ -10,39 +10,31 @@ function RectFrames(centerX, centerY) {
   this.strokeweightC = 1;
   this.growthrate = 0; //a constant rate mapped to counter
   this.expgrwth = 1;
+  this.waitingtoR = 0;
+  this.waitingtoR=5;
 
   this.display = function() { //why do I need this as a separate function?
+push();
+
+rotate(this.waitingtoR);
 
     noFill();
-    stroke(255, 0, 0);
+    stroke(palettebluepink[6]);
     strokeWeight(this.strokeweightA);
     rectMode(CENTER);
     rect(this.x, this.y, this.sizeA, this.sizeA);
     strokeWeight(this.strokeweightB);
+      stroke(palettebluepink[0]);
     rect(this.x, this.y, this.sizeB, this.sizeB);
     strokeWeight(this.strokeweightC);
-    stroke(0, 0, 255);
+    stroke(palettebluepink[4]);
     rect(this.x, this.y, this.sizeC, this.sizeC);
+
+    pop();
   }
 
   this.move = function() {
 
-    // push();
-    //   translate(this.x,this.y);
-    //   rotate(lerp(45,0,this.growthrate)); //why doesn't this work?
-    //   print("rotation=" )
-
-    // noFill();
-    // stroke(255, 0, 0);
-    // strokeWeight(this.strokeweightA);
-    // rectMode(CENTER);
-    // rect(this.x, this.y, this.sizeA, this.sizeA);
-    // strokeWeight(this.strokeweightB);
-    // rect(this.x, this.y, this.sizeB, this.sizeB);
-    // strokeWeight(this.strokeweightC);
-    // stroke(0, 0, 255);
-    // rect(this.x, this.y, this.sizeC, this.sizeC);
-    //       pop();
 
     this.counter = this.counter + 1;
 
@@ -50,29 +42,30 @@ function RectFrames(centerX, centerY) {
     this.strokeweightB = map(this.sizeB, 0, 5000, 0, 40);
     this.strokeweightC = map(this.sizeC, 0, 5000, 0, 40);
 
-    if (this.counter < 100) {
+    if (this.counter < 200) {
 
-      // print("Size RectA = " + this.sizeA)
-      // print("Size RectB = " + this.sizeB)
-        // print("log = " + floor(log(this.counter)))
-        // print("sin = " + floor(sin(this.counter)))
-        // print("exp growth =" + this.growthrate * this.expgrwth)
-      this.growthrate = map(this.counter, 0, 100, 0, 1);
-      this.expgrwth = map(this.growthrate, 0, 1, 1, 0);
-      this.sizeB = lerp(2000, 300, (this.growthrate));
-      this.sizeC = lerp(4000, 700, (this.growthrate));
-      this.sizeA = lerp(400, 50, (this.growthrate)); //this value has to go down from .1 to .001
+     this.growthrate = map(this.counter, 0, 200, 0, 2);
+     this.lerpshrink = this.growthrate*.05;
+      print("this"+ 2*(1/this.counter));
+       constrain(this.sizeB, 2000, 300);
+      this.sizeB = lerp(2000, 300, (2*(1/this.counter)));
+     
+      constrain(this.sizeB, 4000, 700);
+      this.sizeC = lerp(4000, 700, (2*(1/this.counter)));
+      constrain(this.sizeA, 400, 50);
+      this.sizeA = lerp(400, 50, (2*(1/this.counter))); //this value has to go down from .1 to .001
       if ((this.growthrate) <= 0) {
         (thisgrowthrate = 0);
       }
 
-      if (this.counter > 105) {
-        push();
-        translate(this.x, this.y);
-        rotate(5 * this.counter);
-        this.sizeA = lerp(50, 400, (this.growthrate)); //this value has to go down from .1 to .001
-        pop();
-      }
+      // if (this.counter > 75) {
+      //   this.waitingtoR = this.counter*4;
+      //   push();
+      //   translate(this.x, this.y);
+      //   rotate(5 * this.counter);
+      //   this.sizeA = lerp(50, 400, (this.growthrate)); //this value has to go down from .1 to .001
+      //   pop();
+      // }
 
 
 
