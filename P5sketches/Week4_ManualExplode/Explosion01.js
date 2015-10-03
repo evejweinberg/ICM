@@ -10,24 +10,27 @@ function Ball(x, y, targetX, targetY) {
     x: targetX,
     y: targetY
   };
-  this.deathrate=0;
+  this.deathrate = 0;
   this.counter = 0; //give me a counter so I can kill this thing.
 
 
   this.display = function() {
-    if (millis() % 3) { //is this working?
-      fill(255, 0, 0); //red
-      noStroke();
-      ellipse(this.x, this.y, this.size, this.size); //these rotate later
-    }
-    if (millis() % 10) {
-      push();
-      translate(this.x - 10, this.y - 10);
-      rotate(this.size / 5); //spin rectangles around
-      fill(0, 0, 255); //blue
-      rect(10, 10, this.size, this.size);
-      pop();
-    }
+
+    noStroke();
+    print("ellipse")
+    // ellipse(this.x, this.y, this.size, this.size); //these rotate later
+    push();
+    translate(this.x - 10, this.y - 10);
+    fill(255, 0, 0); //red
+
+        ellipse(this.x, this.y, this.size, this.size); //these rotate later
+    rotate(this.size / 5); //spin rectangles around
+    fill(0, 0, 255); //blue
+    rect(10, 10, this.size, this.size);
+        
+
+    pop();
+
   }
 
 
@@ -43,10 +46,10 @@ function Ball(x, y, targetX, targetY) {
     pop();
     // print("exploding")
     this.size = this.size - 1; //decrease size by 1;
-    this.deathrate = map(this.size, 50,0,0,1); //not sure about this
-    print("deathrate = "+ this.deathrate);
-    this.x = lerp(this.x, this.target.x, this.deathrate);//this target is set later, outside
-    this.y = lerp(this.y, this.target.y, this.deathrate);//this target is set later, outside
+    this.deathrate = map(this.size, 50, 0, 0, 1); //not sure about this
+    print("deathrate = " + this.deathrate);
+    this.x = lerp(this.x, this.target.x, this.deathrate); //this target is set later, outside
+    this.y = lerp(this.y, this.target.y, this.deathrate); //this target is set later, outside
     // print(this.x);
     if (this.size < 0) {
       this.size = 0;

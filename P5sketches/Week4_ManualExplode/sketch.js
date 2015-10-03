@@ -17,6 +17,7 @@ var palettebluepink;
 function setup() {
 
   createCanvas(windowWidth, windowHeight);
+  var center = createVector(width / 2, height / 2);
   rect1 = new RectFrames(width / 2, height / 2);
   palettebluepink = [
     color(248, 73, 41), //red
@@ -28,45 +29,50 @@ function setup() {
     color(81, 216, 236),
     color(61, 77, 191) //drk blue
   ]
-  
-  
+
+
 }
 
 function draw() {
+  // PrintLines();
   background(255);
   globalcounter = floor(millis() / 10);
   var rectrotation = 0;
 
   if (globalcounter > 100) {
-    LetterC(100, 100);
- 
-}
+    LetterH(100, 100);
+  }
   if (globalcounter > 140) {
-   
-    LetterH(100 + lettergap, 100);
- 
-}
+    LetterE(100 + lettergap, 100);
+    // LetterH.splice();
+  }
   if (globalcounter > 200) {
-    LetterA(100 + lettergap * 2, 100);
-}
-if (rect1.counter<100){
-      rectrotation = 5*globalcounter;
-      print("rectcounter less")
-    }
+    LetterL(100 + lettergap * 2, 100);
+  }
+  if (globalcounter > 220) {
+    LetterL(100 + lettergap * 3, 100);
+  }
+  if (globalcounter > 240) {
+    LetterO(100 + lettergap * 4, 100);
+  }
+  if (rect1.counter < 100) {
+    rectrotation = 5 * globalcounter;
+    // print("rectcounter less")
+  }
 
   if (globalcounter > 220) {
-    push();
-    translate(width/2,height/2);
-    rotate(rectrotation);
-     rect1.display();
+    // push();
+    // translate(width/2,height/2);
+    // rotate(rectrotation);
+    rect1.display();
     rect1.move();
-    pop();
-    
-    
-   
+    // pop();
 
 
-  } 
+
+
+
+  }
 
 
   for (var i = 0; i < arrayOfBalls.length; i++) {
@@ -106,4 +112,6 @@ function mouseDragged() {
 
 function PrintLines() {
   print("global counter = " + globalcounter)
+   print("Size RectA = " + rect1.sizeA)
+      print("Size RectB = " + rect1.sizeB)
 }

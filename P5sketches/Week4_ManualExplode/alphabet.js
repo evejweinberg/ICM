@@ -1,14 +1,14 @@
-var letterwidth;
-var letterheight;
-var letterxheight;
-var lettergap;
-var letterrounding;
-var letterstroke;
-var lettercount;
-var typecolor;
-var letterstrokeB;
-var letterTotal = 25;
-var letterpos = [];
+// var letterwidth;
+// var letterheight;
+// var letterxheight;
+// var lettergap;
+// var letterrounding;
+// var letterstroke;
+// var lettercount;
+// var typecolor;
+// var letterstrokeB;
+// var letterTotal = 25;
+// var letterpos = [];
 
 
 //-----C---------
@@ -59,7 +59,7 @@ function LetterO(xPos, yPos, linecolor) {
   ellipseMode(CENTER);
   noFill();
   strokeWeight(letterstroke);
-  stroke(linecolor);
+  stroke(palettebluepink[5]);
   rect(0, 0, letterwidth, letterheight, letterrounding, letterrounding, letterrounding, letterrounding);
   strokeWeight(letterstrokeB);
   stroke(240, 90);
@@ -157,5 +157,26 @@ function LetterH(xPos, yPos) {
   strokeWeight(letterstrokeB);
   stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
+  pop();
+}
+
+//-----T-------
+function LetterT(xPos, yPos) {
+  push();
+  translate(xPos, yPos);
+
+  noFill();
+  strokeWeight(letterstroke);
+  stroke(palettebluepink[5]);
+  line(0, 0, 0, letterheight);
+  stroke(palettebluepink[6]);
+  // line(0, letterheight, letterwidth, letterheight); //bottom
+    stroke(palettebluepink[3]);
+  line(0, letterwidth/2, 0, letterwidth/2); //top
+    stroke(palettebluepink[2]);
+  // line(0, letterxheight, letterwidth, letterxheight); //center
+  strokeWeight(letterstrokeB);
+  stroke(240, 90);
+  line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight * .8); //N
   pop();
 }

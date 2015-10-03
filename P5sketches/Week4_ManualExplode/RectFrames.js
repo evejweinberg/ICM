@@ -26,12 +26,12 @@ function RectFrames(centerX, centerY) {
   }
 
   this.move = function() {
-    
+
     // push();
     //   translate(this.x,this.y);
     //   rotate(lerp(45,0,this.growthrate)); //why doesn't this work?
     //   print("rotation=" )
-    
+
     // noFill();
     // stroke(255, 0, 0);
     // strokeWeight(this.strokeweightA);
@@ -52,22 +52,26 @@ function RectFrames(centerX, centerY) {
 
     if (this.counter < 100) {
 
-      print("Size RectA = " + this.sizeA)
-      print("Size RectB = " + this.sizeB)
+      // print("Size RectA = " + this.sizeA)
+      // print("Size RectB = " + this.sizeB)
         // print("log = " + floor(log(this.counter)))
         // print("sin = " + floor(sin(this.counter)))
         // print("exp growth =" + this.growthrate * this.expgrwth)
       this.growthrate = map(this.counter, 0, 100, 0, 1);
       this.expgrwth = map(this.growthrate, 0, 1, 1, 0);
-     
-
-
       this.sizeB = lerp(2000, 300, (this.growthrate));
       this.sizeC = lerp(4000, 700, (this.growthrate));
-      // constrain(this.sizeB,2000,300);
       this.sizeA = lerp(400, 50, (this.growthrate)); //this value has to go down from .1 to .001
       if ((this.growthrate) <= 0) {
         (thisgrowthrate = 0);
+      }
+
+      if (this.counter > 105) {
+        push();
+        translate(this.x, this.y);
+        rotate(5 * this.counter);
+        this.sizeA = lerp(50, 400, (this.growthrate)); //this value has to go down from .1 to .001
+        pop();
       }
 
 
