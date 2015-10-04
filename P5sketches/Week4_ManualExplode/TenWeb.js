@@ -1,61 +1,112 @@
 function TenWeb() {
-  thesePts = [];
-  this.pt1 = createVector(300, 200);
-  this.pt2 = createVector(400, 150);
-  this.pt3 = createVector(430, 180);
-  this.pt4 = createVector(430, 500);
-  this.pt5 = createVector(400, 508);
-  this.pt6 = createVector(397, 183);
-  this.pt7 = createVector(305, 210);
-  this.pt1Edge = createVector(0, 10);
-  this.pt2Edge = createVector(210, 0);
-  this.pt3Edge = createVector(600, 0);
-  this.pt4Edge = createVector(700, 0);
-  this.pt5Edge = createVector(900, height);
-  this.pt6Edge = createVector(0, height);
-  this.pt7Edge = createVector(0, 600);
-  this.diam = 7;
-  this.mult = .1;
-  this.mult += .1;
+
+  var rove1 = map(millis(), 0, 40, 0, PI / 3); //i'll figure this out later
+  var rove2 = map(millis(), 0, 40, 0, PI / 4); //i'll figure this out later
+
+  var Xadd = cos(rove1) * 30;
+  var Yadd = sin(rove1) * 30;
+  var Xadd2 = cos(rove2) * 30;
+  var Yadd2 = sin(rove2) * 30;
+    var Xadd3 = cos(rove2) * 10;
+  var Yadd3 = sin(rove2) * 10;
 
 
-  this.pt1.x = (sin(this.mult)) * 10;
-  strokeWeight(letterstroke);
-  stroke(palettebluepink[1]);
-  // for (var i = 1; i < 7; i++) {
-  //     line(0, 10, this.pt["i"].x, this.pt["i"].y);
-  //   line(200, 0, this.pt["i"].x, this.pt["i"].y);
-  // }
-  stroke(palettebluepink[0]);
-  line(0, 10, this.pt1.x, this.pt1.y);
-  fill(palettebluepink[0]);
-  // ellipse(this.pt1Edge,this.diam,this.diam);
-  stroke(palettebluepink[2]);
-  line(210, 0, this.pt2.x, this.pt2.y);
-  fill(palettebluepink[2]);
-  // ellipse(this.pt2Edge,this.diam,this.diam);
-  stroke(palettebluepink[3]);
-  line(600, 0, this.pt3.x, this.pt3.y);
-  stroke(palettebluepink[4]);
-  line(700, 0, this.pt4.x, this.pt4.y);
-  stroke(palettebluepink[5]);
-  line(900, height, this.pt5.x, this.pt5.y);
-  stroke(palettebluepink[6]);
-  line(0, height, this.pt6.x, this.pt6.y);
-  stroke(palettebluepink[1]);
-  line(0, 600, this.pt7.x, this.pt7.y);
-  noFill();
-  beginShape();
-  vertex(this.pt1.x, this.pt1.y);
-  stroke(palettebluepink[2]);
-  vertex(this.pt2.x, this.pt2.y);
-  vertex(this.pt3.x, this.pt3.y);
-  stroke(palettebluepink[4]);
-  vertex(this.pt4.x, this.pt4.y);
-  vertex(this.pt5.x, this.pt5.y);
-  vertex(this.pt6.x, this.pt6.y);
-  vertex(this.pt7.x, this.pt7.y);
-  endShape(CLOSE);
+  PointsZero = [
+    createVector(550 + Xadd, 200 + Yadd),
+    createVector(645 + Xadd, 190 + Yadd),
+    createVector(745 + Xadd2, 270 + Yadd2),
+    createVector(640 + Xadd2, 500 + Yadd2),
+    createVector(590 + Xadd, 460 + Yadd2),
+    createVector(520 + Xadd2, 300 + Yadd2),
+  ]
+
+  theseZeroEdges = [
+    createVector(200, 0),
+    createVector(910, 0),
+    createVector(width, height),
+    createVector(700, height),
+    createVector(300, height),
+    createVector(0, 500),
+    createVector(0, 600),
+  ]
+  
+  theseZeroInner = [  
+    createVector(600 + Xadd3, 305 + Yadd),
+    createVector(630 + Xadd3, 260 + Yadd3),
+       createVector(645 + Xadd3, 290 + Yadd3),
+    createVector(625 + Xadd, 360 + Yadd)
+    ]
+
+  thesePts = [
+    createVector(300 + Xadd3, 200 + Yadd3),
+    createVector(400 + Xadd3, 140 + Yadd3),
+    createVector(440 + Xadd2, 180 + Yadd2),
+    createVector(440 + Xadd2, 500 + Yadd2),
+    createVector(400 + Xadd3, 508 + Yadd2),
+    createVector(397 + Xadd2, 183 + Yadd2),
+    createVector(305 + Xadd3, 210 + Yadd3)
+  ]
+
+  theseEdges = [
+    createVector(0, 10),
+    createVector(210, 0),
+    createVector(600, 0),
+    createVector(900, height),
+    createVector(300, height),
+    createVector(0, height),
+    createVector(0, 600)
+  ]
+  var numPoints = thesePts.length;
+  var numZeroPoints = PointsZero.length; //8 values
+  var theseZeroInnertotal = theseZeroInner.length;
+
+
+  for (var i = 0; i < numPoints; i++) {
+    noStroke();
+    fill(palettebluepink[i]);
+    circleAtVector(thesePts[i], 10);
+  }
+
+  //draw 1
+  for (var j = 0; j < numPoints; j++) {
+    stroke(palettebluepink[j]);
+    strokeWeight(letterstroke-1);
+    lineAtVector(theseEdges[j], thesePts[j]);
+    strokeWeight(letterstroke + 3);
+    lineAtVector(thesePts[j], thesePts[(j + 1) % numPoints]);
+
+  }
+//draw 0
+  for (var j = 0; j < numZeroPoints; j++) { //9
+    stroke(palettebluepink[j % numZeroPoints]);
+    strokeWeight(letterstroke-1);
+    lineAtVector(theseZeroEdges[(j) % numZeroPoints], PointsZero[(j) % numZeroPoints]);
+    strokeWeight(letterstroke + 3);
+    lineAtVector(PointsZero[(j) % numZeroPoints], PointsZero[(j + 1) % numZeroPoints]);
+    fill(palettebluepink[j % numZeroPoints]);
+    circleAtVector(PointsZero[j], 10);
+  }
+  //inner circle
+    for (var k = 0; k < theseZeroInnertotal; k++) { //9
+    stroke(palettebluepink[k]);
+    strokeWeight(letterstroke + 3);
+    lineAtVector(theseZeroInner[k], theseZeroInner[(k + 1) % theseZeroInnertotal]);
+    fill(palettebluepink[k]);
+    circleAtVector(theseZeroInner[k], 10);
+  }
+
+
+
+
+  function circleAtVector(vector, diameter) {
+    ellipse(vector.x, vector.y, diameter, diameter)
+  }
+
+
+  function lineAtVector(vectorStart, vectorEnd) {
+    line(vectorStart.x, vectorStart.y, vectorEnd.x, vectorEnd.y)
+  }
+
 
 
 

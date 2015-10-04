@@ -11,12 +11,12 @@ function RectFrames(centerX, centerY) {
   this.growthrate = 0; //a constant rate mapped to counter
   this.expgrwth = 1;
   this.waitingtoR = 0;
-  this.waitingtoR=5;
+  this.waitingtoR = 5;
 
   this.display = function() { //why do I need this as a separate function?
-push();
+    push();
 
-rotate(this.waitingtoR);
+    rotate(this.waitingtoR);
 
     noFill();
     stroke(palettebluepink[6]);
@@ -24,7 +24,7 @@ rotate(this.waitingtoR);
     rectMode(CENTER);
     rect(this.x, this.y, this.sizeA, this.sizeA);
     strokeWeight(this.strokeweightB);
-      stroke(palettebluepink[0]);
+    stroke(palettebluepink[0]);
     rect(this.x, this.y, this.sizeB, this.sizeB);
     strokeWeight(this.strokeweightC);
     stroke(palettebluepink[4]);
@@ -44,16 +44,16 @@ rotate(this.waitingtoR);
 
     if (this.counter < 200) {
 
-     this.growthrate = map(this.counter, 0, 200, 0, 2);
-     this.lerpshrink = this.growthrate*.05;
-      print("this"+ 2*(1/this.counter));
-       constrain(this.sizeB, 2000, 300);
-      this.sizeB = lerp(2000, 300, (2*(1/this.counter)));
-     
+      this.growthrate = map(this.counter, 0, 200, 0, 2);
+      this.lerpshrink = this.growthrate * .05;
+      // print("this"+ 2*(1/this.counter));
+      constrain(this.sizeB, 2000, 300);
+      this.sizeB = lerp(2000, 300, (2 * (1 / this.counter)));
+
       constrain(this.sizeB, 4000, 700);
-      this.sizeC = lerp(4000, 700, (2*(1/this.counter)));
+      this.sizeC = lerp(4000, 700, (2 * (1 / this.counter)));
       constrain(this.sizeA, 400, 50);
-      this.sizeA = lerp(400, 50, (2*(1/this.counter))); //this value has to go down from .1 to .001
+      this.sizeA = lerp(400, 50, (2 * (1 / this.counter))); //this value has to go down from .1 to .001
       if ((this.growthrate) <= 0) {
         (thisgrowthrate = 0);
       }

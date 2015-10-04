@@ -182,7 +182,7 @@ function LetterR(xPos, yPos) {
   stroke(palettebluepink[7]);
   rect(0, 0, letterwidth, letterxheight, 0, letterrounding, letterrounding, 0); //rounded
   stroke(palettebluepink[0]);
-    line(letterwidth * .7, letterxheight, letterwidth, letterheight);
+  line(letterwidth * .7, letterxheight, letterwidth, letterheight);
   // line(0, letterxheight, letterwidth, letterxheight); //top bar
   // line(letterwidth, 0, letterwidth, letterheight); //right
   // strokeWeight(letterstrokeB);
@@ -199,11 +199,11 @@ function LetterT(xPos, yPos) {
   noFill();
   strokeWeight(letterstroke);
   stroke(palettebluepink[6]);
-  line(0, 0, letterwidth, 0);//top
+  line(0, 0, letterwidth, 0); //top
   stroke(palettebluepink[6]);
   // line(0, letterheight, letterwidth, letterheight); //bottom
   stroke(palettebluepink[3]);
-  line(letterwidth / 2,0, letterwidth / 2,letterheight); //long
+  line(letterwidth / 2, 0, letterwidth / 2, letterheight); //long
   stroke(palettebluepink[2]);
   // line(0, letterxheight, letterwidth, letterxheight); //center
   // strokeWeight(letterstrokeB);
@@ -220,13 +220,13 @@ function LetterW(xPos, yPos, linecolor) {
   noFill();
   strokeWeight(letterstroke);
   stroke(palettebluepink[0]);
-  line(0, 0, 0, letterheight);//left
+  line(0, 0, 0, letterheight); //left
   stroke(palettebluepink[2]);
-  line(0, letterheight, letterwidth*.6, letterxheight);//across bottom left
+  line(0, letterheight, letterwidth * .6, letterxheight); //across bottom left
   stroke(palettebluepink[5]);
-  line(letterwidth, 0, letterwidth, letterheight);//right
+  line(letterwidth, 0, letterwidth, letterheight); //right
   stroke(palettebluepink[3]);
-   line(letterwidth, letterheight, letterwidth*.4, letterxheight);//across bottom left
+  line(letterwidth, letterheight, letterwidth * .4, letterxheight); //across bottom left
   // strokeWeight(letterstrokeB);
   // stroke(240, 90);
   // line(letterwidth / 5, 0 + letterheight / 3, letterwidth / 5, letterheight); //N

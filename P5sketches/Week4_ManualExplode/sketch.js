@@ -24,7 +24,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   b1 = color(0, 0, 60);
   b2 = color(0, 0, 0);
- 
+
   var center = createVector(width / 2, height / 2);
   rect1 = new RectFrames(width / 2, height / 2);
   palettebluepink = [
@@ -46,17 +46,18 @@ function setup() {
 }
 
 function draw() {
-  PrintLines();
+  // windowResized();
+  printLines();
   background(0);
-  TenWeb();
+
   // setGradient(0, 0, width / 2, height, b2, b1, X_AXIS);
   // setGradient(width / 2, 0, width / 2, height, b1, b2, X_AXIS);
   globalcounter = floor(millis() / 10);
   var rectrotation = 0;
   push(); //all letters
-  if(globalcounter < 320){
-  translate(500+(globalcounter), 200);
-  } else{
+  if (globalcounter < 320) {
+    translate(500 + (globalcounter), 200);
+  } else {
     translate(820, 200);
   }
   if (globalcounter > 60) {
@@ -74,6 +75,7 @@ function draw() {
   }
   if (globalcounter > 90) {
     LetterR(letterspace[4], 0);
+      
   }
   if (globalcounter > 120) {
     LetterO(letterspace[2], letterkern);
@@ -84,6 +86,7 @@ function draw() {
 
   if (globalcounter > 115) {
     LetterT(letterspace[3], letterkern * 2);
+    TenWeb();
   }
   if (globalcounter > 80) {
     LetterE(letterspace[4], letterkern * 2);
@@ -96,42 +99,23 @@ function draw() {
 
 
 
-  // if (rect1.counter < 100) {
-  //   rectrotation = 5 * globalcounter;
-  //   // print("rectcounter less")
-  // }
-if (globalcounter >200 &&globalcounter <208) {
-  
-for (var i = 0; i < totalParticles; i++) {
+  if (globalcounter > 200 && globalcounter < 208) {
 
-    arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+    for (var i = 0; i < totalParticles; i++) {
 
-    arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+      arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+
+      arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+    }
   }
-}
   if (globalcounter > 200) {
- rect1.waitingtoR = rect1.waitingtoR-.4;
+    rect1.waitingtoR = rect1.waitingtoR - .4;
     rect1.display();
     rect1.move();
-    if(rect1.waitingtoR <=0){
-      rect1.waitingtoR =0;
+    if (rect1.waitingtoR <= 0) {
+      rect1.waitingtoR = 0;
     }
-  
-
-
-
-
   }
-  
-  // if (rect1.counter > 75) {
-  //       rect1.waitingtoR = this.counter*4;
-  //       push();
-  //       translate(this.x, this.y);
-  //       rotate(5 * this.counter);
-  //       this.sizeA = lerp(50, 400, (this.growthrate)); //this value has to go down from .1 to .001
-  //       pop();
-  //     }
-
 
   for (var i = 0; i < arrayOfBalls.length; i++) {
     arrayOfBalls[i].display(); //display them all
@@ -141,17 +125,22 @@ for (var i = 0; i < totalParticles; i++) {
     arrayOfLines[i].display(); //display them all
     arrayOfLines[i].explode(); //explode them all
   }
-
+  // print("array length =" + arrayOfBalls.length);
   //kill them, save CPU
-  for (var i = arrayOfLines.length - 1; i >= 0; i--) {
-    if (arrayOfLines[i].counter > 400) { //if it's been 200 millis
-      arrayOfLines.splice(i, 1); //kill this particle
+  // for (var i = arrayOfLines.length - 1; i >= 0; i--) {
+  //   if (arrayOfLines[i].counter > 400) { //if it's been 200 millis
+  //     arrayOfLines.splice(i, 1); //kill this particle
+  //   }
+  // }
+  for (var i = 0; i < arrayOfBalls.length; i++) {
+
+    if (arrayOfBalls[i].size === 0) {
+      arrayOfBalls.splice(i, 1);
     }
   }
 
 
-
-}
+} /////DRAW ENDS////////
 
 function mousePressed() {
   // print("mouseispressed")
@@ -190,10 +179,15 @@ function setGradient(x, y, w, h, c1, c2, axis) {
   }
 }
 
-function PrintLines() {
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+function printLines() {
   // print("global counter = " + globalcounter)
-  print("Size = " + rect1.bPos)
-    print("COunter = " + rect1.counter)
-    print("mult" + TenWeb.mult)
+  // print("Xadd = " +TenWeb.Xadd);
+  // print("Size = " + rect1.bPos)
+  // print("COunter = " + rect1.counter)
+  // print("mult" + TenWeb.mult)
   // print("Size RectB = " + rect1.sizeB)
 }
