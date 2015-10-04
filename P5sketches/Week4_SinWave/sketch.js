@@ -1,9 +1,9 @@
 
-var xspacing = 16;    // Distance between each horizontal location
+var xspacing = 8;    // Distance between each horizontal location
 var w;                // Width of entire wave
 var theta = 0.0;      // Start angle at 0
-var amplitude = 75.0; // Height of wave
-var period = 500.0;   // How many pixels before the wave repeats
+var amplitude = 60.0; // Height of wave
+var period = 400.0;   // How many pixels before the wave repeats
 var dx;               // Value for incrementing x
 var yvalues;  // Using an array to store height values for the wave
 
