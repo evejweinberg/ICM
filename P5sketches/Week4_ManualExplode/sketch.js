@@ -48,6 +48,7 @@ function setup() {
 function draw() {
   PrintLines();
   background(0);
+  TenWeb();
   // setGradient(0, 0, width / 2, height, b2, b1, X_AXIS);
   // setGradient(width / 2, 0, width / 2, height, b1, b2, X_AXIS);
   globalcounter = floor(millis() / 10);
@@ -99,7 +100,7 @@ function draw() {
   //   rectrotation = 5 * globalcounter;
   //   // print("rectcounter less")
   // }
-if (globalcounter >200 &&globalcounter <220) {
+if (globalcounter >200 &&globalcounter <208) {
   
 for (var i = 0; i < totalParticles; i++) {
 
@@ -193,5 +194,6 @@ function PrintLines() {
   // print("global counter = " + globalcounter)
   print("Size = " + rect1.bPos)
     print("COunter = " + rect1.counter)
+    print("mult" + TenWeb.mult)
   // print("Size RectB = " + rect1.sizeB)
 }
