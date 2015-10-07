@@ -11,13 +11,13 @@ function draw() {
 
 
   // sin
-  posY = 200 + sin(posX*0.05) * 100;
+  posY = 200 + sin(posX*0.2) * 100;
   fill(255, 0, 0);
   ellipse(posX, posY, 10, 10);
 
 
   // noise
-  posY = 400 + noise(posX*0.05) * 100;
+  posY = 400 + noise(posX*0.15) * 100;
   fill(255, 255, 0);
   ellipse(posX, posY, 10, 10);
 
@@ -25,6 +25,6 @@ function draw() {
   // update posX
   posX = posX + 1;
   if (posX > width) {
-    posX = 0;
+    posX = !posX;
   }
 }

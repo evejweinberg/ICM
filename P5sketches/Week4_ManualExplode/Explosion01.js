@@ -17,18 +17,13 @@ function Ball(x, y, targetX, targetY) {
   this.display = function() {
 
     noStroke();
-    // print("ellipse")
-    // ellipse(this.x, this.y, this.size, this.size); //these rotate later
     push();
     translate(this.x - 10, this.y - 10);
     fill(palettebluepink[1]); //red
-
     ellipse(this.x, this.y, this.size, this.size); //these rotate later
     rotate(this.size / 5); //spin rectangles around
     fill(palettebluepink[2]); //blue
     rect(10, 10, this.size, this.size);
-
-
     pop();
 
   }
@@ -42,12 +37,11 @@ function Ball(x, y, targetX, targetY) {
     fill(palettebluepink[0]);
     textAlign(CENTER);
     textSize(40 + this.size);
-    text("Enter", 0, 0);
+    text("XXXXXXX", 0, 0);
     pop();
 
     this.size = this.size - 1; //decrease size by 1;
     this.deathrate = map(this.size, 50, 0, 0, 1); //not sure about this
-    // print("deathrate = " + this.deathrate);
     this.x = lerp(this.x, this.target.x, this.deathrate); //this target is set later, outside
     this.y = lerp(this.y, this.target.y, this.deathrate); //this target is set later, outside
     // print(this.x);

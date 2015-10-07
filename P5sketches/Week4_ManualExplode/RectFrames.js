@@ -48,27 +48,15 @@ function RectFrames(centerX, centerY) {
       this.lerpshrink = this.growthrate * .05;
       // print("this"+ 2*(1/this.counter));
       constrain(this.sizeB, 2000, 300);
-      this.sizeB = lerp(2000, 300, (2 * (1 / this.counter)));
+      this.sizeB = lerp(2000, 100, (2 * (1 / this.counter)));
 
-      constrain(this.sizeB, 4000, 700);
-      this.sizeC = lerp(4000, 700, (2 * (1 / this.counter)));
-      constrain(this.sizeA, 400, 50);
+      // constrain(this.sizeB, 4000, 700);
+      this.sizeC = lerp(4000, 300, (2 * (1 / this.counter)));
+      // constrain(this.sizeA, 400, 50);
       this.sizeA = lerp(400, 50, (2 * (1 / this.counter))); //this value has to go down from .1 to .001
       if ((this.growthrate) <= 0) {
         (thisgrowthrate = 0);
       }
-
-      // if (this.counter > 75) {
-      //   this.waitingtoR = this.counter*4;
-      //   push();
-      //   translate(this.x, this.y);
-      //   rotate(5 * this.counter);
-      //   this.sizeA = lerp(50, 400, (this.growthrate)); //this value has to go down from .1 to .001
-      //   pop();
-      // }
-
-
-
     }
 
   }

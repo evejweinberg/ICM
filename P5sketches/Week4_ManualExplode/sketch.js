@@ -16,6 +16,8 @@ var letterkern = letterheight * 1.3;
 var b1, b2, c1, c2; //background gradient
 var Y_AXIS = 1;
 var X_AXIS = 2;
+var letterMoves;
+
 
 var palettebluepink;
 
@@ -24,6 +26,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   b1 = color(0, 0, 60);
   b2 = color(0, 0, 0);
+
 
   var center = createVector(width / 2, height / 2);
   rect1 = new RectFrames(width / 2, height / 2);
@@ -46,26 +49,27 @@ function setup() {
 }
 
 function draw() {
-  // windowResized();
   printLines();
   background(0);
 
-  // setGradient(0, 0, width / 2, height, b2, b1, X_AXIS);
-  // setGradient(width / 2, 0, width / 2, height, b1, b2, X_AXIS);
+  letterMovesX = map(mouseX, 0, width, -40, 40);
+  letterMovesY = map(mouseY, 0, width, -40, 40);
+  letterheight = 120 - letterMovesY;
+  letterwidth = 80 - letterMovesX;
+
   globalcounter = floor(millis() / 10);
   var rectrotation = 0;
   push(); //all letters
-  if (globalcounter < 320) {
+  if (globalcounter < 400) {
     translate(500 + (globalcounter), 200);
   } else {
-    translate(820, 200);
+    translate(900, 200); //
   }
   if (globalcounter > 60) {
     LetterP(letterspace[0], 0);
   }
   if (globalcounter > 140) {
     LetterE(letterspace[3], 0);
-    // LetterH.splice();
   }
   if (globalcounter > 105) {
     LetterO(letterspace[1], 0);
@@ -75,7 +79,7 @@ function draw() {
   }
   if (globalcounter > 90) {
     LetterR(letterspace[4], 0);
-      
+
   }
   if (globalcounter > 120) {
     LetterO(letterspace[2], letterkern);
@@ -86,7 +90,7 @@ function draw() {
 
   if (globalcounter > 115) {
     LetterT(letterspace[3], letterkern * 2);
-    TenWeb();
+
   }
   if (globalcounter > 80) {
     LetterE(letterspace[4], letterkern * 2);
@@ -96,6 +100,10 @@ function draw() {
   }
 
   pop(); //end all letters
+  if (globalcounter > 200) {
+    TenWeb();
+  }
+
 
 
 
@@ -104,8 +112,7 @@ function draw() {
     for (var i = 0; i < totalParticles; i++) {
 
       arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
-
-      arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+      arrayOfBalls.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
     }
   }
   if (globalcounter > 200) {
@@ -121,10 +128,10 @@ function draw() {
     arrayOfBalls[i].display(); //display them all
     arrayOfBalls[i].explode(); //explode them all
   }
-  for (var i = 0; i < arrayOfLines.length; i++) {
-    arrayOfLines[i].display(); //display them all
-    arrayOfLines[i].explode(); //explode them all
-  }
+  // for (var i = 0; i < arrayOfLines.length; i++) {
+  //   arrayOfLines[i].display(); //display them all
+  //   arrayOfLines[i].explode(); //explode them all
+  // }
   // print("array length =" + arrayOfBalls.length);
   //kill them, save CPU
   // for (var i = arrayOfLines.length - 1; i >= 0; i--) {
@@ -144,12 +151,12 @@ function draw() {
 
 function mousePressed() {
   // print("mouseispressed")
-  // for (var i = 0; i < totalParticles; i++) {
+  for (var i = 0; i < totalParticles; i++) {
 
-  //   arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+    arrayOfBalls.push(new Ball(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
 
-  //   arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
-  // }
+    arrayOfLines.push(new Line(width / 2, height / 2, width / 2 + random(-width, width), height / 2 + random(-height, height))); //push new particles
+  }
 }
 
 

@@ -1,4 +1,4 @@
-var posX;
+var posX, posX2, posY2;
 var posY;
 
 function setup() {
@@ -18,6 +18,13 @@ function draw() {
   posX = lerp(posX, mouseX, 0.05);
   posY = lerp(posY, mouseY, 0.05);
   
+  //why doesn't this work?
+  posY2 = lerp(0,500,.05*(millis()/100));
+  posX2=30;
+  print(posY2)
+  constrain(posY2,0,500);
+  
   fill(255,0,0);
   ellipse(posX, posY, 50, 50);
+  ellipse(posX2,posY2, 50,50);//my circle
 }

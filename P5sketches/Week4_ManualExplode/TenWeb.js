@@ -1,14 +1,17 @@
 function TenWeb() {
-
+  this.Extrarove = map(mouseX, 0, width, -90, 40);
+  this.ExtraroveY = map(mouseY, 0, height, -70, 50);
+  this.scootOver = 315;
+  this.scootDown = 220;
   var rove1 = map(millis(), 0, 40, 0, PI / 3); //i'll figure this out later
   var rove2 = map(millis(), 0, 40, 0, PI / 4); //i'll figure this out later
 
-  var Xadd = cos(rove1) * 30;
-  var Yadd = sin(rove1) * 30;
-  var Xadd2 = cos(rove2) * 30;
-  var Yadd2 = sin(rove2) * 30;
-    var Xadd3 = cos(rove2) * 10;
-  var Yadd3 = sin(rove2) * 10;
+  var Xadd =  this.scootOver+ this.Extrarove + cos(rove1) * 30;
+  var Yadd = this.scootDown+this.ExtraroveY + sin(rove1) * 30;
+  var Xadd2 = this.scootOver+this.Extrarove + cos(rove2) * 30;
+  var Yadd2 = this.scootDown+this.ExtraroveY + sin(rove2) * 30;
+  var Xadd3 = this.scootOver+this.Extrarove + cos(rove2) * 10;
+  var Yadd3 = this.scootDown+this.ExtraroveY + sin(rove2) * 10;
 
 
   PointsZero = [
@@ -29,22 +32,22 @@ function TenWeb() {
     createVector(0, 500),
     createVector(0, 600),
   ]
-  
-  theseZeroInner = [  
+
+  theseZeroInner = [
     createVector(600 + Xadd3, 305 + Yadd),
     createVector(630 + Xadd3, 260 + Yadd3),
-       createVector(645 + Xadd3, 290 + Yadd3),
+    createVector(645 + Xadd3, 290 + Yadd3),
     createVector(625 + Xadd, 360 + Yadd)
-    ]
+  ]
 
   thesePts = [
-    createVector(300 + Xadd3, 200 + Yadd3),
+    createVector(300 + Xadd3, 180 + Yadd3),
     createVector(400 + Xadd3, 140 + Yadd3),
-    createVector(440 + Xadd2, 180 + Yadd2),
-    createVector(440 + Xadd2, 500 + Yadd2),
+    createVector(460 + Xadd2, 180 + Yadd2),
+    createVector(460 + Xadd2, 500 + Yadd2),
     createVector(400 + Xadd3, 508 + Yadd2),
     createVector(397 + Xadd2, 183 + Yadd2),
-    createVector(305 + Xadd3, 210 + Yadd3)
+    createVector(305 + Xadd3, 230 + Yadd3)
   ]
 
   theseEdges = [
@@ -59,7 +62,15 @@ function TenWeb() {
   var numPoints = thesePts.length;
   var numZeroPoints = PointsZero.length; //8 values
   var theseZeroInnertotal = theseZeroInner.length;
-
+  // fill(palettebluepink[3]);
+  // beginShape();
+  // thesePts[1];
+  // thesePts[2];
+  // thesePts[3];
+  // thesePts[4];
+  // thesePts[5];
+  // thesePts[6];
+  // endShape(CLOSE);
 
   for (var i = 0; i < numPoints; i++) {
     noStroke();
@@ -70,24 +81,24 @@ function TenWeb() {
   //draw 1
   for (var j = 0; j < numPoints; j++) {
     stroke(palettebluepink[j]);
-    strokeWeight(letterstroke-1);
+    strokeWeight(letterstroke - 1);
     lineAtVector(theseEdges[j], thesePts[j]);
     strokeWeight(letterstroke + 3);
     lineAtVector(thesePts[j], thesePts[(j + 1) % numPoints]);
 
   }
-//draw 0
+  //draw 0
   for (var j = 0; j < numZeroPoints; j++) { //9
     stroke(palettebluepink[j % numZeroPoints]);
-    strokeWeight(letterstroke-1);
+    strokeWeight(letterstroke - 1);
     lineAtVector(theseZeroEdges[(j) % numZeroPoints], PointsZero[(j) % numZeroPoints]);
     strokeWeight(letterstroke + 3);
     lineAtVector(PointsZero[(j) % numZeroPoints], PointsZero[(j + 1) % numZeroPoints]);
     fill(palettebluepink[j % numZeroPoints]);
     circleAtVector(PointsZero[j], 10);
   }
-  //inner circle
-    for (var k = 0; k < theseZeroInnertotal; k++) { //9
+  //draw 0 inner circle
+  for (var k = 0; k < theseZeroInnertotal; k++) { //9
     stroke(palettebluepink[k]);
     strokeWeight(letterstroke + 3);
     lineAtVector(theseZeroInner[k], theseZeroInner[(k + 1) % theseZeroInnertotal]);
