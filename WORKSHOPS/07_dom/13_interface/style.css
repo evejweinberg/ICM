@@ -1,0 +1,25 @@
+.button {
+  background: blue;
+  font-family: "brandon-grotesque";
+  font-size: 3.5em;
+  color: white;
+}
+
+.button:hover {
+  background: #2fcbff;
+  color: white;
+}
+
+.h1 {
+  font-family: "brandon-grotesque";
+  font-size: 2.5em;
+  color: #17657f;
+}
+
+*{
+    font-family: "brandon-grotesque";
+     font-size: 1.2em;
+     background: #8ff2e7;
+     position: relative;
+
+}

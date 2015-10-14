@@ -1,0 +1,77 @@
+.background{
+	background-color: #542E96;
+	color: #542E96;
+
+
+}
+
+.textboxes{
+  /*background-color: blue;*/
+  font-family: "brandon-grotesque", Verdana;
+     color: #9370DB;
+}
+
+.h2{
+  font-family: "brandon-grotesque", Verdana;
+    /*background-color: #542E96;*/
+    color: #FFFFFF;
+    font-size: 28pt;
+    padding: 10px;
+    text-align: center;
+  
+}
+
+* {
+     font-family: "brandon-grotesque", Verdana;
+    background-color: #542E96;
+    color: #FFFFFF;
+    font-size: 18pt;
+    padding: 10px;
+}
+
+.qbutton{
+	 background-color: #21AD92;
+	   font-family: "brandon-grotesque", Verdana;
+	 border: medium solid white;
+
+	 width: 150px;
+	 height: 150px;
+	 position: absolute;
+	 
+
+}
+
+.box.box-stroke{
+	 border: 5px solid white;
+
+}
+
+.test {
+    font-weight: bold;
+}
+
+a, .prompts{
+	font-size: .5em;
+	font-family: "brandon-grotesque", Verdana;
+}
+
+#log{
+	font-size: .5em;
+	bottom:0px;
+	left:0px;
+	position:absolute;
+}
+
+/* div {
+    color: red;
+  }*/
+
+  .scene-2:option{
+  	font-size: .5em;
+	font-family: "brandon-grotesque", Verdana;
+	color: blue;
+  }
+
+  select{
+  	height: 200px;
+  }

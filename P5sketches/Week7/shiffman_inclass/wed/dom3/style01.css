@@ -1,0 +1,67 @@
+.box{
+	
+	 width: 50px;
+	 height: 50px;
+	 position: absolute;
+	 top:40px;
+	 left:40px;
+
+
+}
+
+.textboxes{
+  background-color: blue;
+}
+
+* {
+    font-family: monospace;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    font-size: 18pt;
+    padding: 10px;
+}
+
+.box-btn{
+
+	 width: 50px;
+	 height: 50px;
+	 position: absolute;
+	 top:0px;
+	 left:0px;
+
+}
+
+.box.box-stroke{
+	 border: 5px solid white;
+
+}
+
+.test {
+    font-weight: bold;
+}
+
+a, .prompts{
+	font-size: .5em;
+	font-family: "brandon-grotesque", Verdana;
+}
+
+#log{
+	font-size: .5em;
+	bottom:0px;
+	left:0px;
+	position:absolute;
+}
+
+/* div {
+    color: red;
+  }*/
+
+  .scene-2:option{
+  	font-size: .5em;
+	font-family: "brandon-grotesque", Verdana;
+	color: blue;
+  }
+
+  select{
+  	height: 200px;
+  }
