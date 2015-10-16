@@ -19,15 +19,15 @@ var randomX = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for (var i = 0; i < dots.length; i++) {
-    dots[i] = new Points(); //keep drawing new dots, how does it know the length, if this is in setup?
-  }
-  for (var j = 0; j < nodes.length; j++) {
-    nodes[j] = new DrawLines();
-  }
-  for (var k = 0; k < orbs.length; k++) {
-    orbs[k] = new Ball(x, y, s);
-  }
+  // for (var i = 0; i < dots.length; i++) {
+    dots = new Points(); //keep drawing new dots, how does it know the length, if this is in setup?
+  // }
+  // for (var j = 0; j < nodes.length; j++) {
+    nodes[0] = new DrawLines();
+  // }
+  // for (var k = 0; k < orbs.length; k++) {
+    orbs[0] = new Ball(x, y, s);
+  // }
   orbs.push(new Ball(width / 3, 0, 1));
   orbs.push(new Ball(300, 0, 2));//push 2 balls to start?
 }
@@ -57,16 +57,7 @@ function draw() {
     }
 
   }
-  /*if (millis() - testTime > 5000) {
-    print(YonCir[0]);
-    print(YonCir[100]);
-    countTest = countTest + 1;
-    testTime = millis();
-  } */
-  /*fill(255);
-  ellipse(XonCir[0], YonCir[0], 10, 10);
-  ellipse(XonCir[0], YonCir[1], 10, 10);
-  noFill();*/
+ 
 }
 
 function mousePressed() {
@@ -141,7 +132,7 @@ this.fall = function() {
     YonCir.push(this.cirYpoint); //repopulate the array
   }
 }
-this.wall = function() {
+this.wall = function() {//hit a wall
   for (var i = 0; i < YonLine.length; i++) {
     for (var j = 0; j < YonCir.length; j++) {
       //add or subtract one from each figure as a buffer

@@ -1,4 +1,4 @@
-var serial; // variable to hold an instance of the serialport library
+var serial = new p5.SerialPort(); // variable to hold an instance of the serialport library
 var portName = '/dev/cu.usbmodemfd121'; // fill in your serial port name here
 var locH, locV; // location of the circle
 var circleColor = 255; // color of the circle
@@ -6,7 +6,7 @@ var circleColor = 255; // color of the circle
 function setup() {
   createCanvas(1200, 1000); // make canvas
   smooth();
-  serial = new p5.SerialPort(); // make a new instance of the serialport library
+  // serial = new p5.SerialPort(); // make a new instance of the serialport library
   serial.on('list', printList); // set a callback function for the serialport list event
   serial.on('connected', serverConnected); // callback for connecting to the server
   serial.on('open', portOpen); // callback for the port opening

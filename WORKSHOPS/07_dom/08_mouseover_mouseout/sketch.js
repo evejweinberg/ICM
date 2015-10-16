@@ -22,7 +22,7 @@ function setup() {
   // Here we call methods of DOM Image element to set the size and style.
   img.size(200, 200);
   img.style("padding","10px");
-  img.hide();
+  // img.hide();
    
   // Attach listeners for mouse events related to canvas
   //CALLBACK

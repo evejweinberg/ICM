@@ -1,0 +1,27 @@
+[{
+	"obsDt":"2015-10-14 15:19",
+"lng":-115.326217,
+"locName":"US-NV-Jean-92–98 Main St-Jean Green",
+"obsValid":false,"comName":"Lawrence's Goldfinch",
+"obsReviewed":false,"sciName":"Spinus lawrencei",
+"locationPrivate":true,"howMany":1,
+"lat":35.779972,"locID":"L3833565"},
+
+{
+	"obsDt":"2015-10-14",
+"lng":-114.4944534,
+"locName":"Goshute Valley",
+"obsValid":false,
+"comName":"Black Phoebe",
+"obsReviewed":false,
+"sciName":"Sayornis nigricans",
+"locationPrivate":true,
+"howMany":2,
+"lat":40.9663168,
+"locID":"L1431770"
+},
+{"obsDt":"2015-10-14",
+"lng":-114.4944534,
+"locName":"Goshute Valley",
+"obsValid":false,
+"comName":"Sage Thrasher","obsReviewed":false,"sciName":"Oreoscoptes montanus","locationPrivate":true,"lat":40.9663168,"locID":"L1431770"},{"obsDt":"2015-10-13 11:45","lng":-114.2709489,"locName":"Goshutes Hawkwatch","obsValid":false,"comName":"Red Crossbill (Lodgepole Pine or type 5)","obsReviewed":false,"sciName":"Loxia curvirostra","locationPrivate":false,"howMany":1,"lat":40.4253985,"locID":"L808562"},{"obsDt":"2015-10-13","lng":-118.0778468,"locName":"Arlemont Ranch (Restricted Access)","obsValid":true,"comName":"Yellow-bellied Sapsucker","obsReviewed":true,"sciName":"Sphyrapicus varius","locationPrivate":false,"howMany":1,"lat":37.8241414,"locID":"L866927"},{"obsDt":"2015-10-13","lng":-117.248497,"locName":"Highland Park","obsValid":true,"comName":"Northern Flicker (Yellow-shafted)","obsReviewed":true,"sciName":"Colaptes auratus","locationPrivate":false,"howMany":1,"lat":38.0866079,"locID":"L269373"},{"obsDt":"2015-10-12 14:52","lng":-114.0624619,"locName":"West Wendover WTP","obsValid":true,"comName":"Northern Flicker (intergrade)","obsReviewed":true,"sciName":"Colaptes auratus","locationPrivate":false,"howMany":1,"lat":40.7250147,"locID":"L961757"},{"obsDt":"2015-10-12 11:43","lng":-114.185666,"locName":"Ferguson Spring","obsValid":true,"comName":"Dark-eyed Junco (cismontanus)","obsReviewed":true,"sciName":"Junco hyemalis","locationPrivate":true,"howMany":1,"lat":40.430343,"locID":"L3867666"},{"obsDt":"2015-10-11 17:30","lng":-115.359566,"locName":"Desert NWR--Corn Creek (Field Station)","obsValid":true,"comName":"Yellow-bellied Sapsucker","obsReviewed":true,"sciName":"Sphyrapicus varius","locationPrivate":false,"howMany":1,"lat":36.438797,"locID":"L168656"},{"obsDt":"2015-10-11 07:05","lng":-116.0032616,"locName":"Discovery Park","obsValid":true,"comName":"Cassin's Kingbird","obsReviewed":true,"sciName":"Tyrannus vociferans","locationPrivate":true,"howMany":1,"lat":36.1975909,"locID":"L3222777"},{"obsDt":"2015-10-11 06:52","lng":-115.266594,"locName":"Las Vegas Urban--Floyd Lamb Park at Tule Springs","obsValid":true,"comName":"Black-throated Blue Warbler","obsReviewed":true,"sciName":"Setophaga caerulescens","locationPrivate":false,"howMany":1,"lat":36.3249025,"locID":"L139900"},{"obsDt":"2015-10-11 06:52","lng":-115.266594,"locName":"Las Vegas Urban--Floyd Lamb Park at Tule Springs","obsValid":true,"comName":"Neotropic Cormorant","obsReviewed":true,"sciName":"Phalacrocorax brasilianus","locationPrivate":false,"howMany":1,"lat":36.3249025,"locID":"L139900"},{"obsDt":"2015-10-11 06:52","lng":-115.266594,"locName":"Las Vegas Urban--Floyd Lamb Park at Tule Springs","obsValid":true,"comName":"Black-throated Blue Warbler","obsReviewed":true,"sciName":"Setophaga caerulescens","locationPrivate":false,"howMany":1,"lat":36.3249025,"locID":"L139900"},{"obsDt":"2015-10-11 06:52","lng":-115.266594,"locName":"Las Vegas Urban--Floyd Lamb Park at Tule Springs","obsValid":true,"comName":"Neotropic Cormorant","obsReviewed":true,"sciName":"Phalacrocorax brasilianus","locationPrivate":false,"howMany":1,"lat":36.3249025,"locID":"L139900"},{"obsDt":"2015-10-10 11:50","lng":-115.359566,"locName":"Desert NWR--Corn Creek (Field Station)","obsValid":true,"comName":"Vermilion Flycatcher","obsReviewed":true,"sciName":"Pyrocephalus rubinus","locationPrivate":false,"howMany":1,"lat":36.438797,"locID":"L168656"},{"obsDt":"2015-10-10 11:50","lng":-115.359566,"locName":"Desert NWR--Corn Creek (Field Station)","obsValid":true,"comName":"Yellow-bellied Sapsucker","obsReviewed":true,"sciName":"Sphyrapicus varius","locationPrivate":false,"howMany":1,"lat":36.438797,"locID":"L168656"},{"obsDt":"2015-10-10 08:00","lng":-115.022462,"locName":"Las Vegas Urban--Clark County Wetlands Park","obsValid":false,"comName":"Gila Woodpecker","obsReviewed":false,"sciName":"Melanerpes uropygialis","locationPrivate":false,"howMany":1,"lat":36.1006947,"locID":"L160294"},{"obsDt":"2015-10-10 07:00","lng":-115.359628,"locName":"Corn Creek","obsValid":true,"comName":"Vermilion Flycatcher","obsReviewed":true,"sciName":"Pyrocephalus rubinus","locationPrivate":true,"howMany":1,"lat":36.438152,"locID":"L3850727"}]
