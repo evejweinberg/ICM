@@ -8,7 +8,9 @@ var headerBG = [];
 
 function preload() {
 
-cpbg = createImage("/assets/cpbg.jpg").class(bg);
+  cpbg = createImg("/assets/cpbg.jpg", function() {
+    this.addClass('bg');
+  })
   headerBG0 = createImg("assets/HeaderBG00.png");
   headerBG1 = createImg("assets/HeaderBG01.png");
   headerBG2 = createImg("assets/HeaderBG02.png");
@@ -31,6 +33,11 @@ function setup() {
   P2 = createDiv('Central Park');
   P3 = createDiv('This dataset came from the');
   P4 = createDiv('Cornell Lab of Ornithology');
+
+  function mousePressed() {
+    // P4 = createDiv('Cornell Lab of Ornithology');
+  }
+
   P4.mouseClicked(GetCornellURL);
   P1.position(42, 60).class("h1");
   P2.position(105, 130).class("h1");
@@ -48,16 +55,32 @@ function setup() {
   for (var i = 0; i < data.length; i++) {
     dropdown.option(data[i].comName);
   }
+  dropdown.changed(function() {
+    if (this.selected() == 'American Coot') {
+      AmericanCoot();
+    } else if (this.selected() == 'Yellow-rumped Warbler') {
+      YellowRumpedWarbler();
+    }
+
+  })
 }
 
-function DrawPalmWarbler() {
-  img = createImg('/anim/hiwa.gif');
+function AmericanCoot() {
+  img = createImg('/anim/hiwa.gif').position(700, 20);
+  console.log(data[1].howMany)
+  createP("Recent Spottings:" + data[0].howMany);
+}
+
+function YellowRumpedWarbler() {
+  img = createImg('/anim/palmwarbler.gif').position(600, 20);
+  //text("Recent Spottings:" +data[1].howMany);
+  console.log(data[1].howMany)
 }
 
 function draw() {
 
 }
 
-function GetCornellURL(){
-  
+function GetCornellURL() {
+
 }
