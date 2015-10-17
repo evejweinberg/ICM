@@ -5,14 +5,14 @@ var films = [];
 var filmData;
 
 function preload() {
-  filmData = loadJSON("films.json");
+  filmData = loadJSON("films.json"); //load file
 }
 
 function setup() {
   createCanvas(480, 120);
   for (var i = 0; i < filmData.length; i++) {
     var o = filmData[i];
-    films[i] = new Film(o);
+    films[i] = new Film(o); //callback, call the function
   }
   noStroke();
 }
@@ -21,7 +21,7 @@ function draw() {
   background(0);
   for (var i = 0; i < films.length; i++) {
     var x = i*32 + 32;
-    films[i].display(x, 105); 
+    films[i].display(x, 105); //load all instances of the function
   }
 }
 

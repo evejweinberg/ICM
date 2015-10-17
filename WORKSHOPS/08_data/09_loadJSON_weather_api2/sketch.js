@@ -3,7 +3,7 @@
 var bubbles = [];
 
 function setup() {
-  var url = 'http://api.openweathermap.org/data/2.5/weather?q=NewYork,USA&APPID=YOUR_API_KEY';
+  var url = 'http://api.openweathermap.org/data/2.5/weather?q=NewYork,USA&APPID=5617057952ec4677480fd2bceb74cfc4';
 	loadJSON(url, drawWeather); 
 
   createCanvas(600, 400);
