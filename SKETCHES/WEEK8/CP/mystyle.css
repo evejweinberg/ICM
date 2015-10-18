@@ -1,0 +1,81 @@
+.h1 {
+  /*font-family: "sketchnote-square",sans-serif;*/
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 2.4em;
+}
+
+.h2 {
+  /*font-family: "sketchnote-square",sans-serif;*/
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 1.4em;
+}
+
+.h3{
+   font-family: "clarendon-urw", sans-serif;
+  font-size: .9em;
+  left:10;
+ bottom: 10;
+ position: absolute;
+  
+}
+
+a {
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 1.4em;
+  color: black;
+}
+
+a:link {
+    text-decoration: none;
+    font-size: 1.4em;
+}
+
+a:hover{
+  color: #4c4c4c;
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 1.4em;
+}
+
+a:visited{
+  color: #4c4c4c;
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 1.4em;
+}
+
+.dropdown {
+  /*font-family: "sketchnote-square",sans-serif;*/
+  font-family: "clarendon-urw", sans-serif;
+  font-size: 2.4em;
+  color: black;
+}
+
+.dropdown:hover {
+  color: blue;
+}
+
+
+
+body {
+  /*background-size:cover;*/
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /*background: url(/assets/cpbg.jpg)*/
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /*font-family: "sketchnote-square",sans-serif;*/
+  margin: 50px;
+  box-shadow: 2px 2px 3px #4C4C4C;
+  /*border: 1px solid #111;*/
+  background: black;
+  /*height: 160px;*/
+  /*width: 150px;*/
+  /*padding: 5px 35px 5px 5px;*/
+  /*font-size: 16px;*/
+  /*border: 5px solid #ccc;*/
+  height: 84px;
+  background: url(assets/down.png) 96% / 15% no-repeat #eee;
+}

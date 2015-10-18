@@ -25,11 +25,12 @@ function setup() {
   // for (var j = 0; j < nodes.length; j++) {
     nodes[0] = new DrawLines();
   // }
+   orbs.push(new Ball(width / 3, 0, 1));
+  orbs.push(new Ball(300, 0, 2));//push 2 balls to start?
   // for (var k = 0; k < orbs.length; k++) {
     orbs[0] = new Ball(x, y, s);
   // }
-  orbs.push(new Ball(width / 3, 0, 1));
-  orbs.push(new Ball(300, 0, 2));//push 2 balls to start?
+ 
 }
 
 function draw() {

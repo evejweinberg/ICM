@@ -37,7 +37,7 @@ function Film(f) {
     translate(x, y);
     rotate(-QUARTER_PI);
     fill(ratingGray);
-    text(this.title, 0, 0);
+    text(this.year, 0, 0);
     pop();
   }
 }
