@@ -42,6 +42,30 @@ a:visited{
   font-size: 1.4em;
 }
 
+.musicbutton{
+  position:fixed;
+  font-size: 2.4em;
+  right:0;
+  top:0;
+  background-color: rgba(0,0,0,0.0);
+  color: black;
+  font-weight: bold;
+  border: none;
+  margin: 0;
+  }
+  .musicbutton:hover{
+  position:fixed;
+  font-size: 2.4em;
+  right:0;
+  top:0;
+  background-color: rgba(0,0,0,0.0);
+  color: #47A4C9;
+  font-weight: bold;
+  border: none;
+  margin: 0;
+  }
+  
+
 .dropdown {
   /*font-family: "sketchnote-square",sans-serif;*/
   font-family: "clarendon-urw", sans-serif;
@@ -57,7 +81,7 @@ a:visited{
 
 body {
   /*background-size:cover;*/
-  background-size: 100% 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   /*background: url(/assets/cpbg.jpg)*/
 }

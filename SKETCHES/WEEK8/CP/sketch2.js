@@ -11,31 +11,9 @@ var cloudheight = 200;
 var howMany = 0;
 var textSciName, sciName;
 var selectedBird;
-
-// function allData() { //we'll store the data into this object
-//   this.comName;
-//   this.howMany;
-//   this.lat;
-//   this.lng;
-//   this.locID;
-//   this.locName;
-//   this.sciName;
-// }
-
-// function GetAllData() {
-//   allData.comName = birddata.comName; //telling these variables where to get their values from
-//   allData.howMany = birddata.howMany;
-//   allData.lat = birddata.lat;
-//   allData.lng = birddata.lng;
-//   allData.locID = birddata.locID;
-//   allData.locName = birddata.locName;
-//   allData.sciName = birddata.sciName;
-//   print(allData.sciName[8]);
-// }
-
-// for (var i=0; i<birdata.length; i++){
-// var allthebirdinfo = new allData();
-// }
+var musicPlaying = true;
+var musicbutton, song;
+var cloud = [];
 
 
 function preload() {
@@ -45,22 +23,16 @@ function preload() {
   headerBG3 = createImg("assets/HeaderBG03.png");
   cpbg = createImg("assets/cpbg.jpg");
   cpbg.addClass("body");
-  // for (var i = 0; i < headerBG.length; i++) {
-  //   headerBG[i] = createImg("assets/HeaderBG0" + [i] + ".png");
-  // }
-
-
+  song = loadSound("assets/sfbg.mp3");
   birddata = loadJSON("http://ebird.org/ws1.1/data/obs/geo/recent?lng=" + lng + "&lat=" + lat + "&back=30&dist=3&fmt=json");
 
 } //////PRELOAD ENDS
 
 
 function setup() {
-  // for (var ch=0;ch<20;ch++){
-  //     cloudheight[ch] = random(1200);
-  // }
 
   createCanvas(width, height);
+  song.loop();
   background(0);
   print(birddata);
   imageObject = createImg('anim/intro.gif');
@@ -70,10 +42,9 @@ function setup() {
   textSciName = createP('');
   textSciName.addClass('h2');
 
-  // for (var i = 0; i < data.length; i++) {
-  //   var o = data[i];
-  //   howmany[i] = new DrawRecent(o); //callback, call the function
-  // }
+
+  musicbutton = createButton('♪♫');
+  musicbutton.mousePressed(musictoggle).class('musicbutton');
 
   P1 = createDiv('The Birds Of');
   P2 = createDiv('Central Park');
@@ -114,11 +85,12 @@ function setup() {
     } else if (this.selected() == 'Northern Flicker') {
       NorthernFlicker();
     } else if (this.selected() == 'American Crow') {
-      AmericanCrow();}
-      else if (this.selected() == 'American Robin') {
-      AmericanRobin();}
+      AmericanCrow();
+    } else if (this.selected() == 'American Robin') {
+      AmericanRobin();
+    }
   })
-
+  
   cloudDiv = createDiv('');
   cloudDiv1 = createDiv('');
   cloud = createImg('assets/cloud.png');
@@ -126,17 +98,20 @@ function setup() {
   cloud.parent(cloudDiv);
   cloud1.parent(cloudDiv1);
   cloud1.size(700, 230);
+  cloud.size(1100, 400);
+
+
 }
 
 function draw() {
-  cloudmoveR = (millis() / 0);
-  cloudheight = sin(millis() / 300) * 3;
+
   clear();
-  var speed = 1200;
+  print(millis());
+  cloudsMove((millis() / 40) % 1900,0);
+   var speed = 1200;
   recentCount.position(sin(millis() / speed) * 20 + 900, cos(millis() / speed) * 20 + 620);
   textSciName.position(sin(millis() / speed) * 20 + 1000, cos(millis() / speed) * 20 + 710);
-  cloudDiv.position(-500+(millis() / 20) % 1900, 600 + cloudheight);
-  cloudDiv1.position(-500+(millis() / 30) % 1900, 200 + cloudheight);
+
 }
 
 function AssignManyfromComname() {
@@ -166,6 +141,8 @@ function ChippingSparrow() {
 function YellowRumpedWarbler() {
   imageObject.elt.src = 'anim/palmwarbler.gif';
   AssignManyfromComname();
+  createVideo("https://www.youtube.com/embed/_dCvmakTebE");
+  
 }
 
 function BlueJay() {
@@ -196,4 +173,22 @@ function AmericanCrow() {
 function AmericanRobin() {
   imageObject.elt.src = 'anim/peacock.gif';
   AssignManyfromComname();
+}
+
+function musictoggle() {
+  print("music toggled");
+  musicPlaying = !musicPlaying;
+  if (musicPlaying === true) {
+    song.stop();
+  } else {
+    song.play();
+  }
+}
+
+function cloudsMove(x,y) {
+  this.y = y;
+  this.x = x;
+  cloudheight = sin(millis() / 300) * 3;
+  cloudDiv.position( -500+this.x, this.y + 600+cloudheight);
+  cloudDiv1.position(-500+this.x, this.y + cloudheight);
 }
