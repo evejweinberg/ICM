@@ -1,3 +1,13 @@
+* {
+cursor: url(/assets/mycursor.png);
+/*cursor: help;*/
+  
+}
+
+#image{
+position:absolute;
+}
+
 .h1 {
   /*font-family: "sketchnote-square",sans-serif;*/
   font-family: "clarendon-urw", sans-serif;

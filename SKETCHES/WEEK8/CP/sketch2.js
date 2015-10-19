@@ -14,9 +14,16 @@ var selectedBird;
 var musicPlaying = true;
 var musicbutton, song;
 var cloud = [];
+var mycursor;
+
+
+
+
+// document.body.style.cursor ="url('/assets/mycursor.png')";
 
 
 function preload() {
+  // mycursor = createImg("assets/mycursor.png");
   headerBG0 = createImg("assets/HeaderBG00.png");
   headerBG1 = createImg("assets/HeaderBG01.png");
   headerBG2 = createImg("assets/HeaderBG02.png");
@@ -32,6 +39,7 @@ function preload() {
 function setup() {
 
   createCanvas(width, height);
+ 
   song.loop();
   background(0);
   print(birddata);
@@ -111,6 +119,7 @@ function draw() {
    var speed = 1200;
   recentCount.position(sin(millis() / speed) * 20 + 900, cos(millis() / speed) * 20 + 620);
   textSciName.position(sin(millis() / speed) * 20 + 1000, cos(millis() / speed) * 20 + 710);
+// mycursor.position(mouseX,mouseY);
 
 }
 
@@ -192,3 +201,7 @@ function cloudsMove(x,y) {
   cloudDiv.position( -500+this.x, this.y + 600+cloudheight);
   cloudDiv1.position(-500+this.x, this.y + cloudheight);
 }
+
+$(document).mousemove(function(e){
+    $("#image").stop().animate({left:e.pageX, top:e.pageY});
+});
