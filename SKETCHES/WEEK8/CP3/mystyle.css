@@ -1,11 +1,10 @@
-/** {*/
-/*cursor: url(/assets/mycursor.png);*/
-/*cursor: help;*/
-  
-/*}*/
+* {
+  /*cursor: url(/assets/mycursor.png);*/
+  /*cursor: help;*/
+}
 
-#image{
-position:absolute;
+#image {
+  position: absolute;
 }
 
 .h1 {
@@ -20,13 +19,12 @@ position:absolute;
   font-size: 1.4em;
 }
 
-.h3{
-   font-family: "clarendon-urw", sans-serif;
+.recent {
+  font-family: "clarendon-urw", sans-serif;
   font-size: .9em;
-  left:10;
- bottom: 10;
- position: absolute;
-  
+  left: 0;
+  bottom: 0;
+  position: fixed;
 }
 
 a {
@@ -36,45 +34,45 @@ a {
 }
 
 a:link {
-    text-decoration: none;
-    font-size: 1.4em;
+  text-decoration: none;
+  font-size: 1.4em;
 }
 
-a:hover{
+a:hover {
   color: #4c4c4c;
   font-family: "clarendon-urw", sans-serif;
   font-size: 1.4em;
 }
 
-a:visited{
+a:visited {
   color: #4c4c4c;
   font-family: "clarendon-urw", sans-serif;
   font-size: 1.4em;
 }
 
-.musicbutton{
-  position:fixed;
+.musicbutton {
+  position: fixed;
   font-size: 2.4em;
-  right:0;
-  top:0;
-  background-color: rgba(0,0,0,0.0);
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.0);
   color: black;
   font-weight: bold;
   border: none;
   margin: 0;
-  }
-  .musicbutton:hover{
-  position:fixed;
+}
+
+.musicbutton:hover {
+  position: fixed;
   font-size: 2.4em;
-  right:0;
-  top:0;
-  background-color: rgba(0,0,0,0.0);
+  right: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.0);
   color: #47A4C9;
   font-weight: bold;
   border: none;
   margin: 0;
-  }
-  
+}
 
 .dropdown {
   /*font-family: "sketchnote-square",sans-serif;*/
@@ -87,13 +85,11 @@ a:visited{
   color: blue;
 }
 
-
-
 body {
-  background-size:cover;
-  /*background-size: 100%;*/
+  /*background-size:cover;*/
+  background-size: 100%;
   background-repeat: no-repeat;
-  background-image: url('assets/cpbg.jpg');
+  /*background: url(/assets/cpbg.jpg)*/
 }
 
 select {

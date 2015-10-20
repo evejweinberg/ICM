@@ -15,21 +15,21 @@ var musicPlaying = true;
 var musicbutton, song;
 var cloud = [];
 var mycursor;
+var wiggleOn = false;
+var dissapear;
 
-
-
-
-// document.body.style.cursor ="url('/assets/mycursor.png')";
 
 
 function preload() {
+  dissapear = loadAnimation("anim/disappear0.png", "anim/disappear17.png");
   // mycursor = createImg("assets/mycursor.png");
   headerBG0 = createImg("assets/HeaderBG00.png");
   headerBG1 = createImg("assets/HeaderBG01.png");
   headerBG2 = createImg("assets/HeaderBG02.png");
   headerBG3 = createImg("assets/HeaderBG03.png");
-  cpbg = createImg("assets/cpbg.jpg");
-  cpbg.addClass("body");
+  cpbg = createImg("assets/cpbglrg.jpg");
+  cpbg.style("background-size","100%");
+  // cpbg.addClass("body");
   song = loadSound("assets/sfbg.mp3");
   birddata = loadJSON("http://ebird.org/ws1.1/data/obs/geo/recent?lng=" + lng + "&lat=" + lat + "&back=30&dist=3&fmt=json");
 
@@ -38,12 +38,13 @@ function preload() {
 
 function setup() {
 
-  createCanvas(width, height);
- 
+  createCanvas(windowWidth, windowHeight);
+
   song.loop();
   background(0);
-  //print(birddata);
-  imageObject = createImg('anim/intro.gif');
+  print(birddata);
+  imageObject = createImg('anim/disappear0.png');
+  
   imageObject.position(1050, 400);
   recentCount = createP('');
   recentCount.addClass('h2');
@@ -66,18 +67,26 @@ function setup() {
   headerBG3.position(40, 230);
   headerBG0.position(40, 265);
   myLink.position(48, 260).class("h2");
-  recentDescr = createDiv("*The word 'recent' means reported in the last 30 days").class("h3");
-
+  recentDescr = createDiv("*The word 'recent' means reported in the last 30 days");
+recentDescr.class("recent");
   dropdown = createSelect();
   dropdown.position(0, 420);
   dropdown.addClass("dropdown");
   for (var i = 0; i < birddata.length; i++) {
     dropdown.option(birddata[i].comName);
+    
   }
-
-
-
-  dropdown.changed(function() {
+  
+    cloudDiv = createDiv('');
+  cloudDiv1 = createDiv('');
+  cloud = createImg('assets/cloud.png');
+  cloud1 = createImg('assets/cloud.png');
+  cloud.parent(cloudDiv);
+  cloud1.parent(cloudDiv1);
+  cloud1.size(700, 230);
+  cloud.size(1100, 400);
+  
+dropdown.changed(function() {
     if (this.selected() == 'American Coot') {
       AmericanCoot();
     } else if (this.selected() == 'Yellow-rumped Warbler') {
@@ -98,28 +107,25 @@ function setup() {
       AmericanRobin();
     }
   })
-  
-  cloudDiv = createDiv('');
-  cloudDiv1 = createDiv('');
-  cloud = createImg('assets/cloud.png');
-  cloud1 = createImg('assets/cloud.png');
-  cloud.parent(cloudDiv);
-  cloud1.parent(cloudDiv1);
-  cloud1.size(700, 230);
-  cloud.size(1100, 400);
 
-
-}
-
-function draw() {
+}//setup ends
+// function mousePressed() {
+//   //rewind on mouse pressed - change frame to 0
+//   dissapear.play();
+// }
+  function draw() {
 
   clear();
-  //print(millis());
-  cloudsMove((millis() / 40) % 1900,0);
-   var speed = 1200;
+  if(mouseIsPressed)
+    dissapear.play();
+  else
+    dissapear.stop();
+  animation(dissapear, 500, 500);
+  cloudsMove((millis() / 40) % 1900, 0);
+  var speed = 1200;
   recentCount.position(sin(millis() / speed) * 20 + 900, cos(millis() / speed) * 20 + 620);
   textSciName.position(sin(millis() / speed) * 20 + 1000, cos(millis() / speed) * 20 + 710);
-// mycursor.position(mouseX,mouseY);
+  // mycursor.elt.position(mouseX, 600);
 
 }
 
@@ -148,10 +154,15 @@ function ChippingSparrow() {
 }
 
 function YellowRumpedWarbler() {
-  imageObject.elt.src = 'anim/palmwarbler.gif';
+  // birdartyrw = createImg('anim/YellowRump.png');
+  // birdartyrw.position(850,180);
+  imageObject.mouseOver(wiggletoggle);
+  imageObject.mouseOut(wiggletoggle);
+  imageObject.elt.src = 'anim/YellowRump.png';
+  imageObject.position(850, 180);
   AssignManyfromComname();
-  createVideo("https://www.youtube.com/embed/_dCvmakTebE");
-  
+  //createVideo("https://www.youtube.com/embed/_dCvmakTebE");
+
 }
 
 function BlueJay() {
@@ -194,14 +205,26 @@ function musictoggle() {
   }
 }
 
-function cloudsMove(x,y) {
+function cloudsMove(x, y) {
   this.y = y;
   this.x = x;
   cloudheight = sin(millis() / 300) * 3;
-  cloudDiv.position( -500+this.x, this.y + 600+cloudheight);
-  cloudDiv1.position(-500+this.x, this.y + cloudheight);
+  cloudDiv.position(-500 + this.x, this.y + 600 + cloudheight);
+  cloudDiv1.position(-500 + this.x, this.y + cloudheight);
 }
 
-// $(document).mousemove(function(e){
-//     //$("#image").stop().animate({left:e.pageX, top:e.pageY});
-// });
+
+function wiggletoggle() {
+  wiggleOn = !wiggleOn;
+  if (wiggleOn) {
+  birdartyrw.position(850 + random(-5, 5), 180);
+  print(WIGGLING)
+}
+}
+
+// function wiggleOff (){
+//   birdartyrw.position(850,180);
+// }
+
+
+
