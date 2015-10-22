@@ -1,1 +1,28 @@
-{"city":{"id":4887398,"name":"Chicago","coord":{"lon":-87.650047,"lat":41.850029},"country":"US","population":0},"cod":"200","message":0.0084,"cnt":7,"list":[{"dt":1444928400,"temp":{"day":291.54,"min":286.86,"max":292.5,"night":286.86,"eve":289.72,"morn":288.82},"pressure":1005.61,"humidity":80,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":7.46,"deg":228,"clouds":44,"rain":0.22},{"dt":1445014800,"temp":{"day":284.22,"min":280.68,"max":284.37,"night":280.68,"eve":283.11,"morn":284.37},"pressure":1015.89,"humidity":100,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":7.13,"deg":319,"clouds":0},{"dt":1445101200,"temp":{"day":281.23,"min":279.12,"max":282.21,"night":281.43,"eve":281.67,"morn":279.12},"pressure":1021.2,"humidity":100,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":6.06,"deg":327,"clouds":0},{"dt":1445187600,"temp":{"day":285.02,"min":279.79,"max":285.84,"night":283.48,"eve":284.41,"morn":279.79},"pressure":1023.94,"humidity":99,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3,"deg":282,"clouds":0},{"dt":1445274000,"temp":{"day":286.89,"min":279.32,"max":287.84,"night":286.44,"eve":287.84,"morn":279.32},"pressure":1012.97,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":7.99,"deg":190,"clouds":32},{"dt":1445360400,"temp":{"day":290.88,"min":285.08,"max":290.88,"night":285.08,"eve":289.28,"morn":285.39},"pressure":1008.22,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":6.21,"deg":221,"clouds":88,"rain":7.9},{"dt":1445446800,"temp":{"day":291.53,"min":283.51,"max":291.53,"night":287.53,"eve":290.26,"morn":283.51},"pressure":1007.54,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":4.66,"deg":205,"clouds":37,"rain":0.28}]}
+{"city":
+{"id":4887398,
+"name":"Chicago",
+"coord":{"lon":-87.650047, "lat":41.850029},
+"country":"US",
+"population":0},
+"cod":"200",
+"message":0.0084,
+"cnt":7,
+"list":[{"dt":1444928400,
+"temp":{"day":291.54,
+"min":286.86,
+"max":292.5,
+"night":286.86,
+"eve":289.72,
+"morn":288.82},
+"pressure":1005.61,
+"humidity":80,
+
+"weather":[
+  {"id":500,
+  "main":"Rain",
+  "description":"light rain",
+  "icon":"10d"}],"speed":7.46,"deg":228,"clouds":44,"rain":0.22},
+  {"dt":1445014800,"temp":{"day":284.22,
+  "min":280.68,"max":284.37,"night":280.68,"eve":283.11,
+  "morn":284.37},
+  "pressure":1015.89,"humidity":100,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":7.13,"deg":319,"clouds":0},{"dt":1445101200,"temp":{"day":281.23,"min":279.12,"max":282.21,"night":281.43,"eve":281.67,"morn":279.12},"pressure":1021.2,"humidity":100,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":6.06,"deg":327,"clouds":0},{"dt":1445187600,"temp":{"day":285.02,"min":279.79,"max":285.84,"night":283.48,"eve":284.41,"morn":279.79},"pressure":1023.94,"humidity":99,"weather":[{"id":800,"main":"Clear","description":"sky is clear","icon":"01d"}],"speed":3,"deg":282,"clouds":0},{"dt":1445274000,"temp":{"day":286.89,"min":279.32,"max":287.84,"night":286.44,"eve":287.84,"morn":279.32},"pressure":1012.97,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":7.99,"deg":190,"clouds":32},{"dt":1445360400,"temp":{"day":290.88,"min":285.08,"max":290.88,"night":285.08,"eve":289.28,"morn":285.39},"pressure":1008.22,"humidity":0,"weather":[{"id":501,"main":"Rain","description":"moderate rain","icon":"10d"}],"speed":6.21,"deg":221,"clouds":88,"rain":7.9},{"dt":1445446800,"temp":{"day":291.53,"min":283.51,"max":291.53,"night":287.53,"eve":290.26,"morn":283.51},"pressure":1007.54,"humidity":0,"weather":[{"id":500,"main":"Rain","description":"light rain","icon":"10d"}],"speed":4.66,"deg":205,"clouds":37,"rain":0.28}]}
