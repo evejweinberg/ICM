@@ -1,0 +1,6 @@
+body {
+  background-size:cover;
+  /*background-size: 100%;*/
+  background-repeat: repeat-y;
+  background-image: url('assets/mapsm.jpg');
+}
