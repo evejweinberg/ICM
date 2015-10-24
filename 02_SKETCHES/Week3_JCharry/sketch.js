@@ -43,11 +43,11 @@ var temp;
 
 // Preload ensures that all objects are fully loaded before setup is run
 // This ensures our audio files are available when we need them
-function preload() {
-  // Background and tap sounds loaded here, using p5.sound methods
-  ambientSound = loadSound("assets/ambient.wav");
-  tapSound = loadSound("assets/waterDrop.wav");
-}
+// function preload() {
+//   // Background and tap sounds loaded here, using p5.sound methods
+//   // ambientSound = loadSound("assets/ambient.wav");
+//   // tapSound = loadSound("assets/waterDrop.wav");
+// }
 
 function setup() {
   createCanvas(1280,720);
@@ -63,17 +63,17 @@ function setup() {
   
   // Create an amplitude analyzer object to get volume levels 
   // from the background sound byte.
-  ampAnalyzer = new p5.Amplitude();
-  ampAnalyzer.setInput(ambientSound);
-  ambientSound.loop();
-  ambientSound.play();
+  // ampAnalyzer = new p5.Amplitude();
+  // ampAnalyzer.setInput(ambientSound);
+  // ambientSound.loop();
+  // ambientSound.play();
   
   // Tap sound is run through reverb to change it's feel
   // Create a new reverb object, disconnect the sound so that it won't play as is
   // then process the sound through the reverb object
-  tapReverb = new p5.Reverb();
-  tapSound.disconnect();
-  tapReverb.process(tapSound,1,50);
+  // tapReverb = new p5.Reverb();
+  // tapSound.disconnect();
+  // tapReverb.process(tapSound,1,50);
 
   // The plan was to create a custom background object with methods that allow for the 
   // background to morph and change, but didn't have time to get to it
@@ -88,7 +88,7 @@ function setup() {
 // simple.  It first triggers the background to pulse, then runs the system, which controls
 // the balls and waves
 function draw() {
-  bkg.pulse();
+  // bkg.pulse();
   temp = tempSlider.value();
   system.run()
 }
@@ -99,7 +99,7 @@ function mouseClicked() {
   if (mouseX < 1260 && mouseX > 20 && mouseY > 20 && mouseY < 700) {
     system.addBalls();
     // system.addWaves();
-    tapSound.play();
+    // tapSound.play();
   }
   
   // bkg.wave(mouseX,mouseY);
