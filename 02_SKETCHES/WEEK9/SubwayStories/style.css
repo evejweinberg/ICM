@@ -1,0 +1,55 @@
+.video {
+  width: 300px;
+  height: 200px;
+}
+
+p{
+  font-size:4em;
+  color:white;
+  font-family:futura;
+  background-color:black;
+  margin:30px;
+}
+
+.instructions{
+  position:absolute;
+  right:10px;
+  top:0px;
+  font-size:1.4em;
+  color:white;
+  font-family:futura;
+  background-color:black;
+  margin:30px;
+  width: 200px;
+     float:right;
+  
+}
+
+.bg{
+  background: url('assets/mapbg.png') no-repeat;
+  background-color:red;
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  z-index:800;
+}
+
+body {
+  background-repeat: repeat;
+  /*background: url('assets/bgC.png');*/
+  background: url('assets/mapbg.png') no-repeat;
+  background-color:black;
+    z-index:500;
+}
+
+.header {
+  position: absolute;
+  /*z-index: 999;*/
+  width: 1215px;
+  height: 310px;
+  background-attachment: fixed;
+  background-position: top center;
+  margin: 5px 500px 0px 0px;
+  background-repeat: no-repeat;
+  background: url('assets/title.gif') no-repeat;
+}
