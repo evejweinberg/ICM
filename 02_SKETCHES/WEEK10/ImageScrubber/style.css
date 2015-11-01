@@ -1,0 +1,44 @@
+body {
+
+}
+
+.loadingbg{
+    background-repeat: repeat;
+    background: url('assets/loading2.gif');
+  
+}
+
+.mainbg{
+    background-repeat: repeat;
+    background: url('assets/bgC.png');
+  
+}
+
+/*p{*/
+/*  font-size:7em;*/
+/*  color:white;*/
+/*  font-family:futura;*/
+/*  background-color:black;*/
+/*  margin:30px;*/
+/*}*/
+
+.p1{
+  font-size:2em;
+    color:white;
+  font-family:futura;
+  background-color:black;
+}
+
+.p2{
+  font-size:5em;
+      color:white;
+  font-family:futura;
+  background-color:black;
+}
+
+.p3{
+  font-size:9em;
+      color:white;
+  font-family:futura;
+  background-color:black;
+}

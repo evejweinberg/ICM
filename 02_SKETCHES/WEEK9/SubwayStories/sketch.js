@@ -8,7 +8,7 @@ function preload() {
   story1 = new Story(1, 'assets/story1b.m4a', 'assets/train1red.png', 'assets/story1.txt', 'assets/video1.mov', 100, 200, 'assets/train1blue.png');
   story2 = new Story(2, 'assets/story2.mp3', 'assets/train2red.png', 'assets/story2.txt', 'assets/video2.mov', 70, 350, 'assets/train2blue.png');
   story3 = new Story(3, 'assets/story3.mp3', 'assets/train3red.png', 'assets/story3.txt', 'assets/video3.mov', 320, 130, 'assets/train3blue.png');
-  story4 = new Story(4, 'assets/story4blank.m4a', 'assets/train4red.png', 'assets/story4.txt', 'assets/video4.mov', 180, 800, 'assets/train4blue.png');
+  story4 = new Story(4, 'assets/story4blank.m4a', 'assets/train4red.png', '', 'assets/video4.mov', 180, 800, 'assets/train4blue.png');
 }
 
 
@@ -89,8 +89,11 @@ function Story(num, audiofile, trainlineimage, transcript_file, videofile, x, y,
     this.timings = [50, 150, 200, 250, 300, 100, 500, 700, 1600, 1900];
   }
 
-
-  this.transcript = loadStrings(transcript_file);
+// if (this[4] !=== ''){
+//   this.transcript = loadStrings(transcript_file);
+// } else if (this[4] !=== ''){
+  
+// }
 
   //////internal preload ends//////////
 
