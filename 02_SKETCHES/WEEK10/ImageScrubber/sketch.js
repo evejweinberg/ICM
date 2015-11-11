@@ -1,7 +1,7 @@
 var wordbox; //create a paragraph element
 var story1, story2, story3, story4;
 var stories = [];
-var boxrad = 20;//scrubbox
+var boxrad = 20; //scrubbox
 var boxdiam = 40;
 var linelength = 600;
 var spritestory1, spritestory2;
@@ -9,6 +9,12 @@ var sprite1Library = []; //png sequence
 var sprite2Library = []; //png sequence
 var scrubw = 200;
 var scrubh = 120;
+var amplitude;
+var song, vol;
+var fft;
+var gd;
+var ratetochange;
+var changethismuch;
 
 function preload() {
   for (var i = 0; i < linelength; i++) { //load all the image names
@@ -26,8 +32,8 @@ function preload() {
     sprite1Library.push(loadImage(spritestory1)); //push them all into an array
     sprite2Library.push(loadImage(spritestory2)); //push them all into an array
   }
-  story1 = new Story(1, 'assets/line1.png', true, 'assets/script3.txt', true, 'assets/story1.mov', true, 250, 400);
-  story2 = new Story(2, 'assets/line1.png', true, 'assets/script2.txt', true, 'assets/story2.mov', true, 250, 700);
+  story1 = new Story(1, 'assets/line1.png', true, 'assets/script3.txt', true, ' ', false, 'assets/story1.m4a', true, 250, 400);
+  story2 = new Story(2, 'assets/line1.png', true, 'assets/script2.txt', true, 'assets/story2.mov', true, ' ', false, 250, 700);
 
   stories.push(story1);
   stories.push(story2);
@@ -49,10 +55,11 @@ function setup() {
   endloadingBG();
   wordbox = createP('').class('p');
   cursor(HAND);
-
   for (var story in stories) {
     stories[story].splitwords();
   }
+
+
 
 
 }
@@ -60,7 +67,6 @@ function setup() {
 function draw() {
   clear();
   var isHovered = false;
-
 
   // var isHovered = false;
 
@@ -82,14 +88,16 @@ function draw() {
 
 //////////////////////CONSTRUCTOR/////////////////
 //////////////////////////////////////////////////
-function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, videofile, hasvideo, x, y) {
+function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, videofile, hasvideo, audio, hasaudio, x, y) {
 
   this.x = x;
   this.y = y;
   this.mouseHovered = false;
   this.num = num; //what we call it in here and what it is out there
   this.playing = false;
+  this.playingaudio = false;
   this.hasvideo = hasvideo;
+  this.hasaudio = hasaudio;
   this.haslineimage = haslineimage;
   this.hastranscript = hastranscript;
   this.boxposition = this.x;
@@ -99,6 +107,9 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
   this.index = 0;
   this.lastCue = 0;
   this.boxrotation = 0;
+  this.pos2 = mouseX;
+  this.pos1 = mouseX;
+  this.lastcheck = 0;
 
 
   if (this.hasvideo) {
@@ -109,6 +120,14 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
     this.vidy = 940; //video's height
     this.vidw = 900; //video's width
     this.vidh = 600; //video's height
+    // create a new Amplitude analyzer
+    this.analyzer = new p5.Amplitude();
+    // Patch the input to an volume analyzer
+    this.analyzer.setInput(this.video);
+  }
+
+  if (this.hasaudio) {
+    this.audio = loadSound(audio);
   }
   if (this.haslineimage) {
     fill(255, 7, 100);
@@ -116,8 +135,6 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
   }
   if (this.hastranscript) {
     this.transcript = loadStrings(transcriptfile);
-
-
   }
 
   this.splitwords = function() {
@@ -194,11 +211,15 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
   }
 
   this.pause = function() {
-      this.video.pause();
-      // if (audiofile !== '') {
-      //   this.interview.pause();
-      // }
-      this.playing = false;
+      if (this.hasvideo) {
+        this.video.pause();
+        this.playing = false;
+      }
+
+      if (this.hasaudio) {
+        this.audio.pause();
+        this.playingaudio = false;
+      }
     } /////pause ends///////
 
   this.display = function() {
@@ -210,20 +231,19 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
       this.boxposition = this.x + linelength + boxrad;
     }
     push();
-    translate(this.boxposition+boxrad, this.y);
+    translate(this.boxposition + boxrad, this.y);
     rotate(this.boxrotation);
-    image(box, 0-boxrad,0-boxrad, boxdiam, boxdiam);
+    image(box, 0 - boxrad, 0 - boxrad, boxdiam, boxdiam);
     pop();
     // image(box, this.boxposition,this.y-boxrad, boxdiam, boxdiam);
 
     if (mouseX > this.x && mouseX < (this.x + linelength) && mouseY > (this.y - boxrad) && mouseY < (this.y + boxrad)) {
       // if (onstory === this.num) { //replace this with num?
       this.mouseHovered = true;
-      this.boxrotation=this.boxrotation+.08;
+      this.boxrotation = this.boxrotation + .08;
       this.playvideo();
       this.displaytext();
       this.vidshrink = 0;
-
       this.boxposition = mouseX;
 
 
@@ -244,12 +264,25 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
 
   }
   this.playvideo = function() {
-      if (!this.playing) { //if not playing
-        this.video.loop(); //hit play
-        this.playing = true; //set playing to true
+      if (this.hasvideo) {
+        if (!this.playing) { //if not playing
+          this.video.loop(); //hit play
+          this.playing = true; //set playing to true
+          // this.vol = this.analyzer.getLevel();
+          // this.threshhold = (floor(1000 * this.vol));
+        }
+        image(this.video, this.vidx, this.vidy, this.vidw, this.vidh);
+
       }
-      image(this.video, this.vidx, this.vidy, this.vidw, this.vidh);
-      // image(this.video, this.vidx - 1700, this.vidy, this.vidw, this.vidh);
+
+      if (this.hasaudio) {
+        if (!this.playingaudio) {
+          this.audio.loop();
+          this.getmousedist();
+          this.playingaudio = true;
+          // this.playing = true;
+        }
+      }
 
     } /////play ends/////
 
@@ -258,15 +291,23 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
       wordbox.html(this.words[this.every10frames]);
       // console.log(this.every10frames);
       if (this.every10frames % 2 === 0) {
-        wordbox.class('p1').position(500, 50);//why is this not working
+        wordbox.class('p1').position(500, 50); //why is this not working
       } else if (this.every10frames % 2 === 1) {
         wordbox.class('p2').position(500, 50);
-        // wordbox.elt.class('p2');
       }
-      console.log(wordbox.class);
+
+      /////////TRY VOLUME THRESHHOLD///////
+      // if ( this.threshhold > 35){
+      //   wordbox.html(this.words[this.index]);
+      //   wordbox.class('p2').position(500, 50);
+      //   this.index++;
+      // }
+      // console.log(wordbox.class);
       // else  {
       //   wordbox.position(500, 50).class('p3');
       // }
+
+
 
       // if (millis() - this.lastCue > this.wordtimings[this.index][0]) {
       //   this.lastCue = millis();
@@ -286,5 +327,23 @@ function Story(num, lineimage, haslineimage, transcriptfile, hastranscript, vide
       // }
 
     } //////////PARSE TEXT ENDS//////
+
+
+  this.getmousedist = function() {
+    if (this.hasaudio) {
+      // this.audio.rate(changethismuch);
+      ratetochange = (this.pos2 - this.pos1);
+      changethismuch = map(ratetochange, -300, 300, -2, 2);
+
+      if (millis() - this.lastcheck > 1) {
+        this.pos1 = mouseX;
+        this.lastckeck = millis();
+      }
+
+
+
+    }
+
+  }
 
 } //constructor ends

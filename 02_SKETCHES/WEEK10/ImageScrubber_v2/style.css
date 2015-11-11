@@ -1,0 +1,29 @@
+#allwords{
+  position: absolute;
+  font-size: 4em;
+  color:red;
+  margin:130px;
+}
+
+p3{
+   position: absolute;
+  font-size: 4em;
+  color:red;
+  margin:30px;
+  color:white;
+  font-family: Futura;
+}
+
+p1{
+   position: absolute;
+  font-size: 4em;
+  color:red;
+  margin:30px;
+  color:white;
+  font-family: Futura;
+}
+
+*{
+  position: absolute;
+}
+
