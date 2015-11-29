@@ -1,3 +1,4 @@
+var x, y, px, py;
 // Learning Processing
 // Daniel Shiffman
 // http://www.learningprocessing.com
@@ -16,11 +17,10 @@ var globalpos1check;
 
 function preload() {
   song = loadSound("story1.m4a");
-
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   // noCanvas();
   gd = new getmousedist();
   song.loop();
@@ -34,6 +34,7 @@ function setup() {
 function draw() {
   background(200);
   gd.display();
+  line(100, 100, 700, 100);
 
   song.rate(changethismuch);
   fill(0);
@@ -54,16 +55,23 @@ function getmousedist() {
     this.currentpos = mouseX;
     // this.previouspos = this.previouspos;
 
-    if (millis() - this.lastcheck > 1000) {
-      console.log('time:  ' + millis()/1000);
-
-
+    if (millis() - this.lastcheck > 100) {
       distancetomap = (this.currentpos - this.previouspos);
-      changethismuch = map(distancetomap, -30, 40, -1.5, 2);
+      changethismuch = map(distancetomap, -5, 7, -.4, 1.2);
       this.previouspos = this.currentpos;
       console.log('distancetomap:  ' + distancetomap);
       console.log('changethismuch:  ' + changethismuch);
       this.lastcheck = millis();
     }
   }
+}
+
+
+function touched() {
+
+  x = mouseX || touchX;
+  y = mouseY || touchY;
+  px = pmouseX || ptouchX;
+  py = pmouseY || ptouchY;
+
 }
