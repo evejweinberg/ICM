@@ -1,4 +1,4 @@
 # ICM
 My classwork while in ITP's 'Intro to Computational Media' class
 
-itpblog.evejweinberg.com
+[My grad school blog/snippets](itpblog.evejweinberg.com)
